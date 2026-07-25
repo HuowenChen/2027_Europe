@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>奧捷匈 14 天家族旅行</title>
+<title>奧捷匈 16 晚家族旅行</title>
 <style>
   :root {
     --navy: #1c2b3a;
@@ -22,171 +22,39 @@
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
   }
-  .app {
-    max-width: 480px;
-    margin: 0 auto;
-    min-height: 100vh;
-    background: #fff;
-    box-shadow: 0 0 40px rgba(0,0,0,0.08);
-  }
-  header {
-    background: var(--navy);
-    color: #fff;
-    padding: 22px 20px 18px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-  header .title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-  header .sub {
-    margin-top: 4px;
-    font-size: 12.5px;
-    color: #c8b98f;
-  }
-  .ver-badge {
-    font-size: 10.5px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 3px 9px;
-    border-radius: 100px;
-    color: #e8dcc0;
-    white-space: nowrap;
-    margin-top: 2px;
-  }
-  nav.tabs {
-    display: flex;
-    overflow-x: auto;
-    background: #fff;
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 74px;
-    z-index: 19;
-    -webkit-overflow-scrolling: touch;
-  }
+  .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; box-shadow: 0 0 40px rgba(0,0,0,0.08); }
+  header { background: var(--navy); color: #fff; padding: 22px 20px 18px; position: sticky; top: 0; z-index: 20; }
+  header .title-row { display: flex; justify-content: space-between; align-items: flex-start; }
+  header h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+  header .sub { margin-top: 4px; font-size: 12.5px; color: #c8b98f; }
+  .ver-badge { font-size: 10.5px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); padding: 3px 9px; border-radius: 100px; color: #e8dcc0; white-space: nowrap; margin-top: 2px; }
+  nav.tabs { display: flex; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 74px; z-index: 19; -webkit-overflow-scrolling: touch; }
   nav.tabs::-webkit-scrollbar { display: none; }
-  nav.tabs button {
-    flex: none;
-    padding: 12px 14px;
-    background: none;
-    border: none;
-    font-size: 13.5px;
-    color: var(--muted);
-    border-bottom: 3px solid transparent;
-    font-family: inherit;
-    white-space: nowrap;
-  }
-  nav.tabs button.active {
-    color: var(--navy);
-    font-weight: 700;
-    border-bottom-color: var(--gold);
-  }
+  nav.tabs button { flex: none; padding: 12px 14px; background: none; border: none; font-size: 13.5px; color: var(--muted); border-bottom: 3px solid transparent; font-family: inherit; white-space: nowrap; }
+  nav.tabs button.active { color: var(--navy); font-weight: 700; border-bottom-color: var(--gold); }
   main { padding: 16px 16px 40px; }
   .panel { display: none; }
   .panel.active { display: block; animation: fade .2s ease; }
   @keyframes fade { from{opacity:0} to{opacity:1} }
-
-  .card {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 16px;
-    margin-bottom: 14px;
-  }
-  .card h2 {
-    margin: 0 0 10px;
-    font-size: 15.5px;
-    color: var(--navy);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .route-line {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    font-size: 13.5px;
-    line-height: 1.9;
-  }
-  .route-line .city {
-    background: var(--cream);
-    border: 1px solid var(--line);
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-weight: 600;
-    color: var(--navy);
-  }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+  .card h2 { margin: 0 0 10px; font-size: 15.5px; color: var(--navy); display: flex; align-items: center; gap: 6px; }
+  .route-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13.5px; line-height: 1.9; }
+  .route-line .city { background: var(--cream); border: 1px solid var(--line); padding: 3px 10px; border-radius: 100px; font-weight: 600; color: var(--navy); }
   .route-line .arrow { color: var(--gold); font-weight: 700; }
   .route-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .route-table th, .route-table td {
-    text-align: left;
-    padding: 7px 6px;
-    border-bottom: 1px solid var(--line);
-  }
+  .route-table th, .route-table td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--line); }
   .route-table th { color: var(--muted); font-weight: 600; font-size: 12px; }
-  .badge {
-    display: inline-block;
-    font-size: 10.5px;
-    padding: 1px 7px;
-    border-radius: 100px;
-    background: #eef2ec;
-    color: #4a6b4d;
-    margin-left: 4px;
-  }
-  .badge.warn { background: #fbeee9; color: var(--alert); }
-
-  .day-card {
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    margin-bottom: 12px;
-    overflow: hidden;
-  }
-  .day-head {
-    background: var(--navy);
-    color: #fff;
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .day-card { border: 1px solid var(--line); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
+  .day-head { background: var(--navy); color: #fff; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; }
   .day-head .d { font-weight: 700; font-size: 14px; }
   .day-head .city { font-size: 12.5px; color: #d9cba3; }
   .day-body { padding: 12px 14px; font-size: 13.5px; line-height: 1.75; }
   .day-body .seg { margin-bottom: 8px; }
   .day-body .seg:last-child { margin-bottom: 0; }
-  .seg-label {
-    font-weight: 700;
-    color: var(--gold);
-    margin-right: 4px;
-  }
-  .note-box {
-    background: #fbf6ec;
-    border: 1px solid #ecdfc2;
-    border-radius: 10px;
-    padding: 9px 11px;
-    font-size: 12.5px;
-    color: #6b5a2f;
-    margin-top: 8px;
-  }
-  .alert-box {
-    background: #fbeee9;
-    border: 1px solid #f0c9bd;
-    border-radius: 10px;
-    padding: 9px 11px;
-    font-size: 12.5px;
-    color: var(--alert);
-    margin-top: 8px;
-  }
+  .seg-label { font-weight: 700; color: var(--gold); margin-right: 4px; }
+  .note-box { background: #fbf6ec; border: 1px solid #ecdfc2; border-radius: 10px; padding: 9px 11px; font-size: 12.5px; color: #6b5a2f; margin-top: 8px; }
+  .alert-box { background: #fbeee9; border: 1px solid #f0c9bd; border-radius: 10px; padding: 9px 11px; font-size: 12.5px; color: var(--alert); margin-top: 8px; }
+  .cny-box { background: #fdeeee; border: 1px solid #f3c9c9; border-radius: 10px; padding: 9px 11px; font-size: 12.5px; color: #a8302f; margin-top: 8px; }
   ul.plain { margin: 6px 0 0; padding-left: 18px; }
   ul.plain li { margin-bottom: 5px; font-size: 13.5px; }
   .budget-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 6px; }
@@ -194,38 +62,28 @@
   .budget-table th { color: var(--muted); font-size: 11.5px; font-weight: 600; }
   .total-row td { font-weight: 700; color: var(--navy); border-top: 2px solid var(--navy); }
   .checklist { list-style: none; margin: 0; padding: 0; }
-  .checklist li {
-    display: flex;
-    gap: 10px;
-    padding: 9px 0;
-    border-bottom: 1px dashed var(--line);
-    font-size: 13.5px;
-  }
+  .checklist li { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--line); font-size: 13.5px; }
   .checklist li:last-child { border-bottom: none; }
-  .checklist .chk {
-    flex: none;
-    width: 18px; height: 18px;
-    border: 1.5px solid var(--gold);
-    border-radius: 5px;
-    margin-top: 1px;
-  }
-  .phase-tag {
-    font-size: 11px;
-    color: #fff;
-    background: var(--gold);
-    padding: 2px 8px;
-    border-radius: 100px;
-    display: inline-block;
-    margin-bottom: 8px;
-  }
-  .footer-note {
-    text-align: center;
-    font-size: 11.5px;
-    color: var(--muted);
-    padding: 18px 20px 6px;
-    line-height: 1.8;
-  }
-  .divider { height: 1px; background: var(--line); margin: 16px 0; }
+  .checklist .chk { flex: none; width: 18px; height: 18px; border: 1.5px solid var(--gold); border-radius: 5px; margin-top: 1px; }
+  .phase-tag { font-size: 11px; color: #fff; background: var(--gold); padding: 2px 8px; border-radius: 100px; display: inline-block; margin-bottom: 8px; }
+  .footer-note { text-align: center; font-size: 11.5px; color: var(--muted); padding: 18px 20px 6px; line-height: 1.8; }
+
+  /* flight card */
+  .flight-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 12px; }
+  .flight-head { background: var(--navy); color: #fff; padding: 10px 14px; font-size: 13.5px; font-weight: 700; }
+  .flight-body { padding: 14px; }
+  .flight-route { display: flex; align-items: center; justify-content: space-between; }
+  .flight-route .pt { text-align: center; }
+  .flight-route .time { font-size: 22px; font-weight: 800; color: var(--navy); }
+  .flight-route .code { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .flight-route .mid { flex: 1; text-align: center; padding: 0 10px; position: relative; }
+  .flight-route .mid .line { height: 1px; background: var(--line); margin: 10px 0 4px; }
+  .flight-route .mid .plus1 { font-size: 10.5px; color: var(--alert); }
+  .flight-meta { margin-top: 10px; font-size: 12.5px; color: var(--muted); }
+  .flight-meta b { color: var(--ink); }
+  .fare-box { background: var(--cream); border-radius: 10px; padding: 10px 14px; margin-top: 4px; display: flex; justify-content: space-between; align-items: center; }
+  .fare-box .lbl { font-size: 12.5px; color: var(--muted); }
+  .fare-box .amt { font-size: 17px; font-weight: 800; color: var(--alert); }
 </style>
 </head>
 <body>
@@ -235,17 +93,17 @@
     <div class="title-row">
       <div>
         <h1>奧捷匈家族旅行</h1>
-        <div class="sub">2027 農曆春節 · 14 天自助行程 · 7 人團</div>
+        <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v1.0 · 2026/07/21</div>
+      <div class="ver-badge">v1.1 · 2026/07/25</div>
     </div>
   </header>
 
   <nav class="tabs" id="tabs">
     <button class="active" data-tab="overview">總覽</button>
+    <button data-tab="flight">航班</button>
     <button data-tab="days">逐日行程</button>
     <button data-tab="transport">交通</button>
-    <button data-tab="stay">住宿</button>
     <button data-tab="budget">預算</button>
     <button data-tab="prep">行前清單</button>
     <button data-tab="notes">重要提醒</button>
@@ -258,143 +116,188 @@
       <div class="card">
         <h2>🗺️ 路線總覽</h2>
         <div class="route-line">
-          <span class="city">維也納</span><span class="arrow">→</span>
+          <span class="city">維也納(入境)</span><span class="arrow">→</span>
           <span class="city">布達佩斯</span><span class="arrow">→</span>
-          <span class="city">薩爾茲堡</span><span class="arrow">→</span>
+          <span class="city">維也納</span><span class="arrow">→</span>
+          <span class="city">薩爾斯堡</span><span class="arrow">→</span>
           <span class="city">哈爾施塔特</span><span class="arrow">→</span>
           <span class="city">庫倫洛夫</span><span class="arrow">→</span>
-          <span class="city">布拉格</span>
+          <span class="city">布拉格(出境)</span>
         </div>
-        <div class="note-box">開口式機票：進維也納、出布拉格，全程零折返。</div>
+        <div class="note-box">機票走維也納進、布拉格出；抵達維也納後直接轉火車到布達佩斯，最後回程再經維也納西進薩爾斯堡。</div>
       </div>
 
       <div class="card">
-        <h2>📅 天數分配</h2>
+        <h2>📅 天數分配（共 16 晚）</h2>
         <table class="route-table">
-          <tr><th>天數</th><th>城市</th><th>晚數</th></tr>
-          <tr><td>Day 1–4</td><td>維也納</td><td>4 晚</td></tr>
-          <tr><td>Day 5–7</td><td>布達佩斯</td><td>3 晚</td></tr>
-          <tr><td>Day 8–9</td><td>薩爾茲堡</td><td>2 晚</td></tr>
-          <tr><td>Day 10</td><td>哈爾施塔特</td><td>1 晚</td></tr>
-          <tr><td>Day 11</td><td>庫倫洛夫</td><td>1 晚</td></tr>
-          <tr><td>Day 12–14</td><td>布拉格</td><td>3 晚</td></tr>
-          <tr><td>Day 15</td><td>布拉格離境</td><td>—</td></tr>
+          <tr><th>日期</th><th>城市</th><th>晚數</th></tr>
+          <tr><td>1/22–27</td><td>布達佩斯</td><td>5 晚</td></tr>
+          <tr><td>1/27–30</td><td>維也納</td><td>3 晚</td></tr>
+          <tr><td>1/30–2/1</td><td>薩爾斯堡</td><td>2 晚</td></tr>
+          <tr><td>2/1–2</td><td>哈爾施塔特</td><td>1 晚</td></tr>
+          <tr><td>2/2–3</td><td>庫倫洛夫</td><td>1 晚</td></tr>
+          <tr><td>2/3–7</td><td>布拉格</td><td>4 晚</td></tr>
         </table>
       </div>
 
+      <div class="cny-box">🧧 除夕(2/5)與初一(2/6)都在布拉格度過，可留意當地是否有華人餐廳或年菜食材採買地點。</div>
+
       <div class="card">
-        <h2>✨ 本行程重點</h2>
+        <h2>✨ 本次更新重點</h2>
         <ul class="plain">
-          <li>慢步調自助行程，適合青少年與長輩同行</li>
-          <li>火車＋單點接駁小巴為主，不整趟租車、不買鐵路通票</li>
-          <li>布達佩斯溫泉、國會、城堡山 — 青少年友善景點</li>
-          <li>哈爾施塔特湖畔一晚、庫倫洛夫舊城漫遊</li>
+          <li>布達佩斯加碼「聖安德烈小鎮 Szentendre」半日遊（蔡依林《馬德里不思議》拍攝地）</li>
+          <li>機票確定走維也納進、布拉格出，抵達當天直接轉火車去布達佩斯</li>
+          <li>總天數由 14 晚延長為 16 晚，布達佩斯與布拉格都多留一些時間</li>
         </ul>
       </div>
+    </section>
 
-      <div class="alert-box">
-        ⚠️ 適逢農曆春節旅遊高峰，機票與熱門公寓建議 6–9 個月前預訂。
+    <!-- FLIGHT -->
+    <section class="panel" id="flight">
+      <div class="flight-card">
+        <div class="flight-head">✈️ 台北 → 維也納</div>
+        <div class="flight-body">
+          <div class="flight-route">
+            <div class="pt"><div class="time">23:35</div><div class="code">TPE</div></div>
+            <div class="mid"><div class="line"></div><div class="plus1">+1 天</div></div>
+            <div class="pt"><div class="time">06:50</div><div class="code">VIE</div></div>
+          </div>
+          <div class="flight-meta">出發：<b>2027/1/21（四）</b>　艙等：<b>豪華經濟艙 基本 (E)</b></div>
+        </div>
       </div>
+
+      <div class="flight-card">
+        <div class="flight-head">✈️ 布拉格 → 台北</div>
+        <div class="flight-body">
+          <div class="flight-route">
+            <div class="pt"><div class="time">10:30</div><div class="code">PRG</div></div>
+            <div class="mid"><div class="line"></div><div class="plus1">+1 天</div></div>
+            <div class="pt"><div class="time">05:25</div><div class="code">TPE</div></div>
+          </div>
+          <div class="flight-meta">出發：<b>2027/2/7（日）</b>　抵達：<b>2027/2/8</b>　艙等：<b>豪華經濟艙 標準 (A)</b></div>
+        </div>
+      </div>
+
+      <div class="fare-box">
+        <div class="lbl">華航報價總額</div>
+        <div class="amt">TWD 355,875</div>
+      </div>
+
+      <div class="note-box">此為 2026/7/25 查詢的報價截圖，尚未在信箱中查到正式訂位確認信／電子機票，出票完成後建議再核對一次訂位代號與艙等。</div>
+
+      <div class="alert-box">⏱️ 06:50 抵達維也納後需通關、領行李、再到火車站搭車前往布達佩斯，建議抓 2 小時以上緩衝，避免銜接太趕。</div>
     </section>
 
     <!-- DAYS -->
     <section class="panel" id="days">
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 1</span><span class="city">抵達維也納</span></div>
+        <div class="day-head"><span class="d">Day 1・1/21（四）</span><span class="city">台北出發</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>台北直飛維也納約13小時，搭機場快線(CAT/S-Bahn)進市區</div>
-          <div class="seg"><span class="seg-label">行程</span>住宿附近散步、超市採買、早休息調時差</div>
-          <div class="seg"><span class="seg-label">餐飲</span>維也納炸豬排(Wiener Schnitzel)</div>
+          <div class="seg"><span class="seg-label">交通</span>華航 23:35 桃園起飛，直飛維也納</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 2</span><span class="city">維也納</span></div>
+        <div class="day-head"><span class="d">Day 2・1/22（五）</span><span class="city">抵達維也納 → 布達佩斯</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">上午</span>霍夫堡皇宮、茜茜公主博物館、西班牙馬術學校外觀</div>
-          <div class="seg"><span class="seg-label">下午</span>聖史蒂芬大教堂（可登南塔）、格拉本大街散步</div>
-          <div class="seg"><span class="seg-label">傍晚</span>中央咖啡館喝咖啡、吃沙河蛋糕</div>
+          <div class="seg"><span class="seg-label">交通</span>06:50 抵達維也納，通關後轉搭火車前往布達佩斯（約2.5小時）</div>
+          <div class="seg"><span class="seg-label">下午</span>入住、瓦西街、中央市場大廳吃 lángos</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 3</span><span class="city">維也納</span></div>
+        <div class="day-head"><span class="d">Day 3・1/23（六）</span><span class="city">布達佩斯</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">上午</span>美泉宮參觀＋格洛麗葉觀景台（成人約€28–44）</div>
-          <div class="seg"><span class="seg-label">下午</span>普拉特遊樂園 — 摩天輪與遊樂設施，青少年友善</div>
+          <div class="seg"><span class="seg-label">全天</span>纜車上城堡山 — 漁人堡、馬提亞斯教堂、布達城堡</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 4</span><span class="city">維也納</span></div>
+        <div class="day-head"><span class="d">Day 4・1/24（日）</span><span class="city">布達佩斯</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">上午</span>美景宮看克林姆《吻》，或選藝術史博物館</div>
-          <div class="seg"><span class="seg-label">下午</span>納許市場、百水公寓；留半天休息</div>
+          <div class="seg"><span class="seg-label">全天</span>聖安德烈小鎮 Szentendre 半日遊（電車/船約40分鐘可達，蔡依林《馬德里不思議》拍攝地、藝術家小鎮）</div>
+          <div class="seg"><span class="seg-label">傍晚</span>返回布達佩斯市區自由活動</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 5</span><span class="city">維也納 → 布達佩斯</span></div>
+        <div class="day-head"><span class="d">Day 5・1/25（一）</span><span class="city">布達佩斯</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>Railjet 約2.5小時，中午抵達布達佩斯東站</div>
-          <div class="seg"><span class="seg-label">下午</span>瓦西街、中央市場大廳吃 lángos</div>
+          <div class="seg"><span class="seg-label">上午</span>塞切尼溫泉浴場（約€37–44）</div>
+          <div class="seg"><span class="seg-label">下午</span>匈牙利國會導覽（需提前線上訂票，非歐盟票價約€36）</div>
+          <div class="alert-box">未滿14歲禁入塞切尼／魯達斯溫泉，同行有未滿14歲者請改訂 Palatinus</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 6</span><span class="city">布達佩斯</span></div>
+        <div class="day-head"><span class="d">Day 6・1/26（二）</span><span class="city">布達佩斯</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">上午</span>纜車上城堡山 — 漁人堡、馬提亞斯教堂、布達城堡</div>
-          <div class="seg"><span class="seg-label">下午</span>塞切尼溫泉浴場（約€37–44）</div>
-          <div class="alert-box">未滿14歲禁入塞切尼／魯達斯溫泉；蓋勒特溫泉整修至約2028年。同行有未滿14歲者請改訂 Palatinus 或 Aquaworld。</div>
-        </div>
-      </div>
-
-      <div class="day-card">
-        <div class="day-head"><span class="d">Day 7</span><span class="city">布達佩斯</span></div>
-        <div class="day-body">
-          <div class="seg"><span class="seg-label">上午</span>匈牙利國會導覽（需提前線上訂票，非歐盟票價約€36）</div>
-          <div class="seg"><span class="seg-label">下午</span>聖伊斯特萬大教堂、鏈橋、自由廣場找迷你雕像</div>
+          <div class="seg"><span class="seg-label">上午</span>聖伊斯特萬大教堂、鏈橋</div>
+          <div class="seg"><span class="seg-label">下午</span>自由廣場找迷你雕像、採買伴手禮</div>
           <div class="seg"><span class="seg-label">傍晚</span>多瑙河遊船夜景</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 8</span><span class="city">布達佩斯 → 薩爾茲堡</span></div>
+        <div class="day-head"><span class="d">Day 7・1/27（三）</span><span class="city">布達佩斯 → 維也納</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>直達 Railjet 約5小時（經維也納、林茲）</div>
-          <div class="seg"><span class="seg-label">傍晚</span>入住老城區、晚餐後散步</div>
+          <div class="seg"><span class="seg-label">交通</span>Railjet 約2.5小時，上午出發、中午抵達維也納</div>
+          <div class="seg"><span class="seg-label">下午</span>霍夫堡皇宮、聖史蒂芬大教堂（可登南塔）</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 9</span><span class="city">薩爾茲堡</span></div>
+        <div class="day-head"><span class="d">Day 8・1/28（四）</span><span class="city">維也納</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">上午</span>纜車上薩爾茲堡要塞俯瞰雪景全城</div>
-          <div class="seg"><span class="seg-label">下午</span>糧食胡同、莫札特出生地、米拉貝爾宮花園、主教座堂</div>
+          <div class="seg"><span class="seg-label">上午</span>美泉宮參觀＋格洛麗葉觀景台（成人約€28–44）</div>
+          <div class="seg"><span class="seg-label">下午</span>普拉特遊樂園（摩天輪，青少年友善）</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 10</span><span class="city">薩爾茲堡 → 哈爾施塔特</span></div>
+        <div class="day-head"><span class="d">Day 9・1/29（五）</span><span class="city">維也納</span></div>
+        <div class="day-body">
+          <div class="seg"><span class="seg-label">上午</span>美景宮看克林姆《吻》，或選藝術史博物館</div>
+          <div class="seg"><span class="seg-label">下午</span>納許市場、百水公寓</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-head"><span class="d">Day 10・1/30（六）</span><span class="city">維也納 → 薩爾斯堡</span></div>
+        <div class="day-body">
+          <div class="seg"><span class="seg-label">交通</span>Railjet 約2.5小時</div>
+          <div class="seg"><span class="seg-label">下午</span>入住老城區、晚餐後散步</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-head"><span class="d">Day 11・1/31（日）</span><span class="city">薩爾斯堡</span></div>
+        <div class="day-body">
+          <div class="seg"><span class="seg-label">上午</span>纜車上薩爾斯堡要塞俯瞰雪景全城</div>
+          <div class="seg"><span class="seg-label">下午</span>糧食胡同、莫札特出生地、米拉貝爾宮花園</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-head"><span class="d">Day 12・2/1（一）</span><span class="city">薩爾斯堡 → 哈爾施塔特</span></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">交通</span>火車經 Attnang-Puchheim 轉車＋渡輪，約2.5小時</div>
-          <div class="seg"><span class="seg-label">行程</span>湖畔漫步、天主教堂與骸骨屋、鹽礦（如已重開，末班纜車約16:00）</div>
-          <div class="note-box">出發前查 salzwelten.at 確認鹽礦／纜車冬季營運狀態</div>
+          <div class="seg"><span class="seg-label">下午</span>湖畔漫步、天主教堂與骸骨屋</div>
+          <div class="note-box">出發前查 salzwelten.at 確認鹽礦／纜車冬季營運狀態（末班約16:00）</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 11</span><span class="city">哈爾施塔特 → 庫倫洛夫</span></div>
+        <div class="day-head"><span class="d">Day 13・2/2（二）</span><span class="city">哈爾施塔特 → 庫倫洛夫</span></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">交通</span>私人門到門接駁小巴，約3小時</div>
-          <div class="seg"><span class="seg-label">下午</span>舊城漫步、彩繪塔與城堡塔樓（內部導覽冬季關閉）、斗篷橋</div>
+          <div class="seg"><span class="seg-label">下午</span>舊城漫步、彩繪塔與城堡塔樓、斗篷橋</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 12</span><span class="city">庫倫洛夫 → 布拉格</span></div>
+        <div class="day-head"><span class="d">Day 14・2/3（三）</span><span class="city">庫倫洛夫 → 布拉格</span></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">交通</span>RegioJet／FlixBus 約2.5–3小時</div>
           <div class="seg"><span class="seg-label">下午</span>查理大橋、小城區散步</div>
@@ -402,25 +305,32 @@
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 13</span><span class="city">布拉格</span></div>
+        <div class="day-head"><span class="d">Day 15・2/4（四）</span><span class="city">布拉格</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">上午</span>布拉格城堡（聖維特大教堂、舊皇宮、黃金巷，約450 CZK）</div>
-          <div class="seg"><span class="seg-label">下午</span>舊城廣場、天文鐘整點報時、猶太區</div>
+          <div class="seg"><span class="seg-label">全天</span>布拉格城堡（聖維特大教堂、舊皇宮、黃金巷，約450 CZK）</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 14</span><span class="city">布拉格</span></div>
+        <div class="day-head"><span class="d">Day 16・2/5（五）除夕</span><span class="city">布拉格</span></div>
+        <div class="day-body">
+          <div class="seg"><span class="seg-label">上午</span>舊城廣場、天文鐘整點報時、猶太區</div>
+          <div class="seg"><span class="seg-label">晚上</span>圍爐年夜飯（可留意當地中式/亞洲餐廳，或自己備年菜）</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-head"><span class="d">Day 17・2/6（六）初一</span><span class="city">布拉格</span></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">上午</span>佩特任瞭望塔／鏡子迷宮，或伏爾塔瓦河遊船</div>
-          <div class="seg"><span class="seg-label">下午</span>採買伴手禮、咖啡館休息</div>
+          <div class="seg"><span class="seg-label">下午</span>採買伴手禮、咖啡館休息，整理行李</div>
         </div>
       </div>
 
       <div class="day-card">
-        <div class="day-head"><span class="d">Day 15</span><span class="city">布拉格離境</span></div>
+        <div class="day-head"><span class="d">Day 18・2/7（日）</span><span class="city">布拉格離境</span></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>機場快線至瓦茨拉夫哈維爾機場，返台</div>
+          <div class="seg"><span class="seg-label">交通</span>10:30 布拉格起飛，2/8 05:25 抵達台北</div>
         </div>
       </div>
 
@@ -432,39 +342,14 @@
         <h2>🚄 城際交通時間</h2>
         <table class="route-table">
           <tr><th>路段</th><th>方式</th><th>時間</th></tr>
-          <tr><td>維也納→布達佩斯</td><td>Railjet/EC</td><td>約2.5小時</td></tr>
-          <tr><td>布達佩斯→薩爾茲堡</td><td>直達 Railjet</td><td>約5小時</td></tr>
-          <tr><td>薩爾茲堡→哈爾施塔特</td><td>火車轉車＋渡輪</td><td>約2.5小時</td></tr>
+          <tr><td>維也納機場→布達佩斯</td><td>火車</td><td>約2.5小時</td></tr>
+          <tr><td>布達佩斯→維也納</td><td>Railjet</td><td>約2.5小時</td></tr>
+          <tr><td>維也納→薩爾斯堡</td><td>Railjet</td><td>約2.5小時</td></tr>
+          <tr><td>薩爾斯堡→哈爾施塔特</td><td>火車轉車＋渡輪</td><td>約2.5小時</td></tr>
           <tr><td>哈爾施塔特→庫倫洛夫</td><td>私人接駁小巴</td><td>約3小時</td></tr>
           <tr><td>庫倫洛夫→布拉格</td><td>RegioJet/FlixBus</td><td>約2.5–3小時</td></tr>
         </table>
-        <div class="note-box">哈爾施塔特⇄庫倫洛夫大眾運輸差（火車需7小時多次轉車），強烈建議預約門到門接駁小巴。</div>
-      </div>
-
-      <div class="card">
-        <h2>🚆 火車 vs 租車 vs 通票</h2>
-        <ul class="plain">
-          <li><b>建議：</b>點對點早鳥票＋單點接駁小巴</li>
-          <li>Eurail 通票7人約US$2,296＋訂位費，較不划算</li>
-          <li>整趟租車：跨國單程還車費常達€150–500＋各國高速公路電子票證，且多數市中心舊城禁行汽車</li>
-          <li>火車票越早買越便宜（ÖBB Sparschiene 最低€9.90起），約6個月前開賣</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- STAY -->
-    <section class="panel" id="stay">
-      <div class="card">
-        <h2>🏠 住宿區域建議</h2>
-        <ul class="plain">
-          <li><b>維也納：</b>第1區內城 或 第6/7區納許市場一帶</li>
-          <li><b>布達佩斯：</b>第5區市中心／第6區安德拉什大道／第7區</li>
-          <li><b>薩爾茲堡：</b>老城區或緊鄰火車站/新城一帶</li>
-          <li><b>哈爾施塔特：</b>村內民宿（數量有限，冬季須提早訂）</li>
-          <li><b>庫倫洛夫：</b>舊城區石板巷弄（接駁小巴停舊城邊緣）</li>
-          <li><b>布拉格：</b>小城區（安靜、近城堡）或新城區瓦茨拉夫廣場（較便宜、房間大）</li>
-        </ul>
-        <div class="note-box">7人建議訂2–3房公寓式住宿（含廚房、洗衣機），比多間旅館房更划算、更有家庭空間。</div>
+        <div class="note-box">哈爾施塔特⇄庫倫洛夫大眾運輸差，強烈建議預約門到門接駁小巴。維也納機場往布達佩斯的火車，建議先查好從機場到火車站的接駁方式（City Airport Train／地鐵）。</div>
       </div>
     </section>
 
@@ -474,15 +359,14 @@
         <h2>💰 高階預算估算（僅供參考）</h2>
         <table class="budget-table">
           <tr><th>類別</th><th>估算</th></tr>
-          <tr><td>國際機票（每人）</td><td>US$900–1,800+</td></tr>
-          <tr><td>住宿（全團14晚）</td><td>€2,500–4,000</td></tr>
-          <tr><td>餐飲（7人14天）</td><td>€3,000–5,000</td></tr>
-          <tr><td>城際交通（火車＋小巴）</td><td>€1,100–1,400</td></tr>
-          <tr><td>景點門票（7人）</td><td>€700–1,200</td></tr>
-          <tr><td>市內交通/雜支</td><td>€500–800</td></tr>
-          <tr class="total-row"><td>地面費用合計（不含機票）</td><td>約 €7,800–12,400</td></tr>
+          <tr><td>國際機票（7人，已有華航報價）</td><td>TWD 355,875（單一報價，待確認人數）</td></tr>
+          <tr><td>住宿（全團16晚）</td><td>€2,800–4,500</td></tr>
+          <tr><td>餐飲（7人16天）</td><td>€3,400–5,700</td></tr>
+          <tr><td>城際交通（火車＋小巴）</td><td>€1,200–1,500</td></tr>
+          <tr><td>景點門票（7人）</td><td>€750–1,300</td></tr>
+          <tr><td>市內交通/雜支</td><td>€550–850</td></tr>
         </table>
-        <div class="note-box">匯率概估：€1≈NT$35，US$1≈NT$32。實際依訂票時機、住宿等級與匯率變動。</div>
+        <div class="note-box">機票報價需再確認是否為 7 人總價；其餘地面費用因天數由 14 晚增至 16 晚（布達佩斯 +2 晚），已同步上修約 15%。</div>
       </div>
     </section>
 
@@ -491,15 +375,15 @@
       <div class="card">
         <span class="phase-tag">出發前 6–9 個月</span>
         <ul class="checklist">
-          <li><span class="chk"></span>訂開口式機票（進維也納、出布拉格）</li>
+          <li><span class="chk"></span>確認並完成華航機票出票（目前僅為報價，尚未見訂位確認信）</li>
           <li><span class="chk"></span>確認護照效期（離境後需≥3個月、10年內核發）＋追蹤 ETIAS 進度</li>
-          <li><span class="chk"></span>訂各城公寓住宿（2–3房）</li>
+          <li><span class="chk"></span>訂各城公寓住宿（2–3房），布達佩斯需訂 5 晚</li>
         </ul>
       </div>
       <div class="card">
         <span class="phase-tag">出發前約6個月</span>
         <ul class="checklist">
-          <li><span class="chk"></span>搶 ÖBB Sparschiene 早鳥火車票</li>
+          <li><span class="chk"></span>搶 ÖBB Sparschiene 早鳥火車票（含維也納機場→布達佩斯）</li>
           <li><span class="chk"></span>預約哈爾施塔特→庫倫洛夫接駁小巴</li>
           <li><span class="chk"></span>預約需提前訂票景點：匈牙利國會導覽、美泉宮時段票、布拉格城堡</li>
         </ul>
@@ -510,6 +394,7 @@
           <li><span class="chk"></span>查 salzwelten.at 確認哈爾施塔特鹽礦/纜車冬季班表</li>
           <li><span class="chk"></span>確認溫泉浴場年齡規定，未滿14歲者改訂親子浴場</li>
           <li><span class="chk"></span>備妥防滑防水保暖靴、泳具（含浴袍）、現金</li>
+          <li><span class="chk"></span>若想在布拉格圍爐，先查當地華人超市/餐廳</li>
         </ul>
       </div>
     </section>
@@ -520,24 +405,24 @@
         <h2>❄️ 冬季天氣與打包</h2>
         <ul class="plain">
           <li>白天約2–4°C、夜間 -4°C至0°C；山區更冷</li>
-          <li>日照僅約9小時（維也納約7:20日出、16:50日落），戶外行程盡量安排至下午3–4點前</li>
-          <li>耶誕市集1月下旬抵達時已全部結束（僅美泉宮/摩天輪廣場市集延至1/6）</li>
+          <li>日照僅約9小時，戶外行程盡量安排至下午3–4點前</li>
           <li>打包：發熱衣、刷毛中層、防風防水外套、毛帽圍巾手套、防滑保暖靴</li>
         </ul>
       </div>
       <div class="card">
         <h2>⚠️ 重要提醒</h2>
         <ul class="plain">
-          <li>塞切尼/魯達斯溫泉未滿14歲禁入；蓋勒特溫泉整修至約2028年</li>
-          <li>哈爾施塔特鹽礦2026/9/1重開，但冬季末班纜車約16:00，出發前務必核實</li>
-          <li>庫倫洛夫城堡內部導覽11–3月關閉（塔樓、庭院、博物館仍開放，週一休）</li>
-          <li>ETIAS 上路時程仍有變數（預期2027年，費用€20），出發前查最新公告</li>
-          <li>匈牙利國會等景點對非歐盟旅客票價較高（約歐盟票2倍）</li>
+          <li>維也納轉布達佩斯需通關＋轉車，建議抓2小時以上緩衝</li>
+          <li>塞切尼/魯達斯溫泉未滿14歲禁入</li>
+          <li>哈爾施塔特鹽礦冬季末班纜車約16:00</li>
+          <li>庫倫洛夫城堡內部導覽11–3月關閉</li>
+          <li>除夕、初一都在布拉格，可提前規劃年夜飯地點</li>
+          <li>華航機票目前僅是報價畫面，尚未在信箱查到出票確認信，請留意完成付款</li>
         </ul>
       </div>
       <div class="footer-note">
-        本行程為初版規劃，價格、時刻、景點營運狀態請於出發前以官方資訊為準。<br>
-        版本 v1.0 · 更新日期 2026/07/21
+        本行程為修訂版，價格、時刻、景點營運狀態請於出發前以官方資訊為準。<br>
+        版本 v1.1 · 更新日期 2026/07/25
       </div>
     </section>
 
