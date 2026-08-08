@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>奧捷匈 16 晚家族旅行</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <style>
   :root {
     --navy: #1c2b3a;
@@ -23,12 +24,12 @@
     -webkit-font-smoothing: antialiased;
   }
   .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; box-shadow: 0 0 40px rgba(0,0,0,0.08); }
-  header { background: var(--navy); color: #fff; padding: 22px 20px 18px; position: sticky; top: 0; z-index: 20; }
+  header { background: var(--navy); color: #fff; padding: 22px 20px 18px; position: sticky; top: 0; z-index: 500; }
   header .title-row { display: flex; justify-content: space-between; align-items: flex-start; }
   header h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
   header .sub { margin-top: 4px; font-size: 12.5px; color: #c8b98f; }
   .ver-badge { font-size: 10.5px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); padding: 3px 9px; border-radius: 100px; color: #e8dcc0; white-space: nowrap; margin-top: 2px; }
-  nav.tabs { display: flex; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 74px; z-index: 19; -webkit-overflow-scrolling: touch; }
+  nav.tabs { display: flex; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 74px; z-index: 499; -webkit-overflow-scrolling: touch; }
   nav.tabs::-webkit-scrollbar { display: none; }
   nav.tabs button { flex: none; padding: 12px 14px; background: none; border: none; font-size: 13.5px; color: var(--muted); border-bottom: 3px solid transparent; font-family: inherit; white-space: nowrap; }
   nav.tabs button.active { color: var(--navy); font-weight: 700; border-bottom-color: var(--gold); }
@@ -60,7 +61,6 @@
   .budget-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 6px; }
   .budget-table th, .budget-table td { padding: 8px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
   .budget-table th { color: var(--muted); font-size: 11.5px; font-weight: 600; }
-  .total-row td { font-weight: 700; color: var(--navy); border-top: 2px solid var(--navy); }
   .checklist { list-style: none; margin: 0; padding: 0; }
   .checklist li { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--line); font-size: 13.5px; }
   .checklist li:last-child { border-bottom: none; }
@@ -84,6 +84,67 @@
   .fare-box { background: var(--cream); border-radius: 10px; padding: 10px 14px; margin-top: 4px; display: flex; justify-content: space-between; align-items: center; }
   .fare-box .lbl { font-size: 12.5px; color: var(--muted); }
   .fare-box .amt { font-size: 17px; font-weight: 800; color: var(--alert); }
+
+  /* maps */
+  .map-overview { height: 320px; border-radius: 12px; border: 1px solid var(--line); margin-top: 4px; z-index: 1; }
+  .daymap { height: 170px; border-top: 1px solid var(--line); z-index: 1; }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 11.5px; color: var(--muted); }
+  .map-legend span { display: flex; align-items: center; gap: 4px; }
+  .lg-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .lg-line { width: 18px; height: 3px; display: inline-block; }
+  .leaflet-container { font-family: inherit; }
+  .pin-num {
+    background: var(--navy); color: #fff; border: 2px solid #fff;
+    border-radius: 50%; width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,.4);
+  }
+  .pin-num.side { background: var(--gold); width: 22px; height: 22px; font-size: 11px; }
+  /* Traditional Chinese map labels (with local spelling underneath) */
+  .lbl.leaflet-tooltip {
+    background: rgba(255,255,255,.93);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.18);
+    color: var(--navy);
+    padding: 2px 7px;
+    white-space: nowrap;
+    line-height: 1.25;
+    text-align: left;
+  }
+  .lbl.leaflet-tooltip::before { display: none; }
+  .lbl.leaflet-tooltip b { display: block; font-size: 12px; font-weight: 700; }
+  .lbl.leaflet-tooltip i {
+    display: block; font-style: normal;
+    font-size: 9.5px; color: var(--muted); letter-spacing: .2px;
+  }
+  .lbl-side.leaflet-tooltip b { color: #8a6b2f; }
+  .lbl-day.leaflet-tooltip { padding: 1px 6px; }
+  .lbl-day.leaflet-tooltip b { font-size: 11.5px; }
+  .lbl-day.leaflet-tooltip i { font-size: 9px; }
+
+  /* Google Maps link chips */
+  .gmaps { padding: 10px 14px 2px; border-top: 1px solid var(--line); background: #fcfaf6; }
+  .gmaps-head { font-size: 11px; color: var(--muted); margin-bottom: 7px; letter-spacing: .3px; }
+  .gmaps-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .gchip {
+    display: inline-block;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--navy);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 4px 11px;
+    white-space: nowrap;
+  }
+  .gchip:active { background: var(--cream); }
+  .gchip.route {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
@@ -95,7 +156,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v1.4 · 2026/07/25</div>
+      <div class="ver-badge">v1.8 · 2026/07/25</div>
     </div>
   </header>
 
@@ -114,16 +175,15 @@
     <!-- OVERVIEW -->
     <section class="panel active" id="overview">
       <div class="card">
-        <h2>🗺️ 路線總覽</h2>
-        <div class="route-line">
-          <span class="city">維也納(入境)</span><span class="arrow">→</span>
-          <span class="city">布達佩斯</span><span class="arrow">→</span>
-          <span class="city">薩爾斯堡</span><span class="arrow">→</span>
-          <span class="city">哈爾施塔特</span><span class="arrow">→</span>
-          <span class="city">庫倫洛夫</span><span class="arrow">→</span>
-          <span class="city">布拉格(出境)</span>
+        <h2>🗺️ 實際路線地圖</h2>
+        <div id="mapOverview" class="map-overview"></div>
+        <div class="map-legend">
+          <span><i class="lg-dot" style="background:#1c2b3a"></i><b>1–6＝入住順序</b>（過夜城市）</span>
+          <span><i class="lg-dot" style="background:#b8935a"></i>★ 一日遊（不過夜）</span>
+          <span><i class="lg-line" style="background:#c9622f"></i>陸路移動路線</span>
         </div>
-        <div class="note-box">機票走維也納進、布拉格出；落地當天直接入住維也納休息，隔天再開始行程。布達佩斯→薩爾斯堡的直達車會經過維也納，過境不停留，全程不走回頭路。</div>
+        <div class="note-box">數字代表<b>第幾個入住的城市</b>：①維也納→②布達佩斯→③薩爾斯堡→④哈爾施塔特→⑤庫倫洛夫→⑥布拉格，虛線就是照這個順序連起來的實際移動路線。點任一個標記可看該站日期與住幾晚。</div>
+        <div class="note-box">地圖為真實經緯度位置。可看出全程由東(布達佩斯)往西再往北(布拉格)推進，除了布達佩斯→薩爾斯堡會沿多瑙河廊帶西行經過維也納之外，沒有其他回頭路。</div>
       </div>
 
       <div class="card">
@@ -142,12 +202,15 @@
       <div class="cny-box">🧧 除夕(2/5)與初一(2/6)都在布拉格度過，可留意當地是否有華人餐廳或年菜食材採買地點。</div>
 
       <div class="card">
-        <h2>✨ 本次更新重點</h2>
+        <h2>✨ 路線順不順？</h2>
         <ul class="plain">
-          <li>路線改為維也納優先入住 3 晚，落地當天不用急著轉車，直接休息調時差</li>
-          <li>布達佩斯加碼「聖安德烈小鎮 Szentendre」半日遊（蔡依林《馬德里不思議》拍攝地）</li>
-          <li>布達佩斯→薩爾斯堡直達車行經維也納，過境不停留，全程零回頭路</li>
+          <li><b>維也納→布達佩斯</b>：往東約214km，順向</li>
+          <li><b>布達佩斯→薩爾斯堡</b>：往西約450km，直達車沿途經維也納，車上過境不用下車</li>
+          <li><b>薩爾斯堡→哈爾施塔特</b>：往東南約52km，深入鹽湖區</li>
+          <li><b>哈爾施塔特→庫倫洛夫</b>：往北約148km，跨入捷克</li>
+          <li><b>庫倫洛夫→布拉格</b>：往北約141km，抵達出境城市</li>
         </ul>
+        <div class="note-box">✅ 順路驗算：布達佩斯→維也納(214km)＋維也納→薩爾斯堡(251km)＝465km，與兩地直線距離450km幾乎相同，代表維也納幾乎正好落在這條路徑上，這班直達車完全沒有繞路。全程陸路約 1,004km。</div>
       </div>
     </section>
 
@@ -199,6 +262,7 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 1・1/21（四）</span><span class="city">台北出發</span></div>
+        <div class="daymap" data-stops="tpe,vienna" data-mode="air"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">交通</span>華航 CI063　23:35 桃園(T1)起飛，直飛維也納</div>
         </div>
@@ -206,6 +270,7 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 2・1/22（五）</span><span class="city">抵達維也納</span></div>
+        <div class="daymap" data-stops="vie_airport,hofburg,graben" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">交通</span>06:50 抵達維也納，搭機場快線(CAT)或火車進市區，入住放行李</div>
           <div class="seg"><span class="seg-label">午後</span>霍夫堡皇宮、格拉本大街</div>
@@ -214,24 +279,29 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 3・1/23（六）</span><span class="city">維也納</span></div>
+        <div class="daymap" data-stops="schonbrunn,belvedere" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>維也納皇室巡禮：美泉宮(熊布朗宮)、美景宮欣賞克林姆名畫《吻》</div>
           <div class="seg"><span class="seg-label">交通</span>大眾運輸(地鐵/電車)</div>
+          <div class="note-box">兩宮分居市區西南與東南，建議上午美泉宮、下午美景宮，地鐵 U4 轉 D 電車</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 4・1/24（日）</span><span class="city">維也納</span></div>
+        <div class="daymap" data-stops="stephansdom,musikverein,sacher" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>維也納文化體驗：聖史蒂芬大教堂、金色大廳/歌劇院、享用薩赫咖啡蛋糕</div>
           <div class="seg"><span class="seg-label">交通</span>步行／電車</div>
+          <div class="note-box">三個點都在老城區內，彼此步行 5–10 分鐘可達</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 5・1/25（一）</span><span class="city">維也納 → 布達佩斯</span></div>
+        <div class="daymap" data-stops="vienna,budapest" data-mode="rail"></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>國際火車(ÖBB／RegioJet)前往匈牙利</div>
+          <div class="seg"><span class="seg-label">交通</span>國際火車(ÖBB／RegioJet)前往匈牙利，約2.5小時</div>
           <div class="seg"><span class="seg-label">午後</span>聖伊什特萬聖殿</div>
           <div class="seg"><span class="seg-label">傍晚</span>多瑙河夜景</div>
         </div>
@@ -239,31 +309,37 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 6・1/26（二）</span><span class="city">布達佩斯・佩斯區</span></div>
+        <div class="daymap" data-stops="parliament,nycafe,szimpla" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>國會大廈、紐約咖啡館、廢墟酒吧體驗</div>
           <div class="seg"><span class="seg-label">交通</span>大眾運輸／步行</div>
+          <div class="note-box">三點都在多瑙河東岸的佩斯區，沿 M2/M1 地鐵串連</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 7・1/27（三）</span><span class="city">布達佩斯・布達區</span></div>
+        <div class="daymap" data-stops="fishermans,matthias,budacastle,szechenyi" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>漁人堡、馬加什教堂、布達城堡、塞切尼溫泉體驗</div>
           <div class="seg"><span class="seg-label">交通</span>大眾運輸／纜車</div>
-          <div class="alert-box">未滿14歲禁入塞切尼／魯達斯溫泉，同行有未滿14歲者請改訂 Palatinus</div>
+          <div class="alert-box">⚠️ 塞切尼溫泉在河對岸的城市公園，與布達區城堡群距離較遠（約6km），建議上午布達區、下午再搭 M1 地鐵去溫泉</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 8・1/28（四）</span><span class="city">近郊一日遊</span></div>
+        <div class="daymap" data-stops="budapest,szentendre" data-mode="rail"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>聖安德烈小鎮 Szentendre：探訪蔡依林《馬德里不思議》MV 拍攝地，漫步藝術小鎮</div>
-          <div class="seg"><span class="seg-label">交通</span>近郊鐵路(HÉV)／巴士</div>
+          <div class="seg"><span class="seg-label">交通</span>近郊鐵路(HÉV)／巴士，約40分鐘</div>
+          <div class="note-box">位於布達佩斯正北方約20km，HÉV H5 線從 Batthyány tér 站直達</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 9・1/29（五）</span><span class="city">布達佩斯</span></div>
+        <div class="daymap" data-stops="greatmarket,chainbridge" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>自由探索與採買：中央市場採買伴手禮</div>
           <div class="seg"><span class="seg-label">夜間</span>多瑙河遊船</div>
@@ -272,14 +348,17 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 10・1/30（六）</span><span class="city">布達佩斯 → 薩爾斯堡</span></div>
+        <div class="daymap" data-stops="budapest,vienna,salzburg" data-mode="rail"></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>跨國直達火車(ÖBB Railjet)，沿途經過維也納，過境不停留</div>
+          <div class="seg"><span class="seg-label">交通</span>跨國直達火車(ÖBB Railjet)約5小時，沿途經過維也納，過境不停留</div>
           <div class="seg"><span class="seg-label">傍晚</span>漫步糧食胡同</div>
+          <div class="note-box">地圖中間那個點就是維也納，可看出這班車是沿多瑙河廊帶一路西行，不是繞路</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 11・1/31（日）</span><span class="city">薩爾斯堡</span></div>
+        <div class="daymap" data-stops="hohensalzburg,mozart,getreidegasse" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>舊城區與城堡：纜車登上薩爾斯堡要塞俯瞰雪景、參觀莫札特故居</div>
           <div class="seg"><span class="seg-label">交通</span>步行／纜車</div>
@@ -288,8 +367,9 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 12・2/1（一）</span><span class="city">薩爾斯堡 → 哈爾施塔特</span></div>
+        <div class="daymap" data-stops="salzburg,hallstatt" data-mode="rail"></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>郵政巴士／火車＋渡輪，入住童話湖畔小鎮</div>
+          <div class="seg"><span class="seg-label">交通</span>郵政巴士／火車＋渡輪，約2.5小時，入住童話湖畔小鎮</div>
           <div class="seg"><span class="seg-label">午後</span>欣賞白雪皚皚的湖光山色</div>
           <div class="note-box">出發前查 salzwelten.at 確認鹽礦／纜車冬季營運狀態（末班約16:00）</div>
         </div>
@@ -297,22 +377,26 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 13・2/2（二）</span><span class="city">哈爾施塔特 → 庫倫洛夫</span></div>
+        <div class="daymap" data-stops="hallstatt,krumlov" data-mode="bus"></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">交通</span>CK Shuttle 專車包車，中午跨國前往捷克 CK 小鎮</div>
+          <div class="seg"><span class="seg-label">交通</span>CK Shuttle 專車包車約3小時，中午跨國前往捷克 CK 小鎮</div>
           <div class="seg"><span class="seg-label">午後</span>漫步紅瓦白牆的童話老城</div>
+          <div class="note-box">這段大眾運輸極差（火車需7小時多次轉車），包車是正確選擇</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 14・2/3（三）</span><span class="city">庫倫洛夫 → 布拉格</span></div>
+        <div class="daymap" data-stops="krumlov,prague" data-mode="bus"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">上午</span>參觀庫倫洛夫城堡區</div>
-          <div class="seg"><span class="seg-label">交通</span>午後搭長途巴士(FlixBus/RegioJet)或火車前往布拉格</div>
+          <div class="seg"><span class="seg-label">交通</span>午後搭長途巴士(FlixBus/RegioJet)或火車前往布拉格，約2.5–3小時</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 15・2/4（四）</span><span class="city">布拉格・老城區</span></div>
+        <div class="daymap" data-stops="oldtown,charlesbridge,powdertower" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>老城廣場天文鐘、查理大橋、火藥塔，漫遊伏爾塔瓦河畔</div>
           <div class="seg"><span class="seg-label">交通</span>步行／地鐵</div>
@@ -321,6 +405,7 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 16・2/5（五）除夕</span><span class="city">布拉格・城堡區</span></div>
+        <div class="daymap" data-stops="praguecastle,stvitus,goldenlane" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>布拉格城堡、聖維特大教堂、黃金巷、小城區</div>
           <div class="seg"><span class="seg-label">交通</span>電車／步行</div>
@@ -330,17 +415,21 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 17・2/6（六）初一</span><span class="city">布拉格深度體驗</span></div>
+        <div class="daymap" data-stops="vysehrad,dancinghouse" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>高堡區 Vyšehrad 俯瞰市景、跳舞的房子、採買伴手禮</div>
           <div class="seg"><span class="seg-label">交通</span>地鐵／電車</div>
+          <div class="note-box">兩點都在伏爾塔瓦河東岸南段，可沿河濱步行串連</div>
         </div>
       </div>
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 18・2/7（日）</span><span class="city">布拉格離境</span></div>
+        <div class="daymap" data-stops="prague,prg_airport" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">上午</span>辦理退稅</div>
           <div class="seg"><span class="seg-label">交通</span>華航 CI068　10:30 布拉格(T1)起飛，2/8 05:25 抵達台北</div>
+          <div class="note-box">機場在市區西邊約17km，建議提前3小時出發</div>
         </div>
       </div>
 
@@ -355,10 +444,10 @@
           <tr><td>維也納→布達佩斯</td><td>Railjet</td><td>約2.5小時</td></tr>
           <tr><td>布達佩斯→薩爾斯堡</td><td>直達 Railjet（經維也納過境）</td><td>約5小時</td></tr>
           <tr><td>薩爾斯堡→哈爾施塔特</td><td>火車轉車＋渡輪</td><td>約2.5小時</td></tr>
-          <tr><td>哈爾施塔特→庫倫洛夫</td><td>私人接駁小巴</td><td>約3小時</td></tr>
+          <tr><td>哈爾施塔特→庫倫洛夫</td><td>CK Shuttle 包車</td><td>約3小時</td></tr>
           <tr><td>庫倫洛夫→布拉格</td><td>RegioJet/FlixBus</td><td>約2.5–3小時</td></tr>
         </table>
-        <div class="note-box">哈爾施塔特⇄庫倫洛夫大眾運輸差，強烈建議預約門到門接駁小巴。布達佩斯→薩爾斯堡的直達車會行經維也納，不需要另外安排轉車或停留。</div>
+        <div class="note-box">哈爾施塔特⇄庫倫洛夫大眾運輸差，已規劃 CK Shuttle 包車。布達佩斯→薩爾斯堡的直達車會行經維也納，不需要另外安排轉車或停留。</div>
       </div>
     </section>
 
@@ -368,14 +457,14 @@
         <h2>💰 高階預算估算（僅供參考）</h2>
         <table class="budget-table">
           <tr><th>類別</th><th>估算</th></tr>
-          <tr><td>國際機票（7人，已有華航報價）</td><td>TWD 355,875（單一報價，待確認人數）</td></tr>
+          <tr><td>國際機票（5人已確定）</td><td>TWD 345,975</td></tr>
           <tr><td>住宿（全團16晚）</td><td>€2,800–4,500</td></tr>
           <tr><td>餐飲（7人16天）</td><td>€3,400–5,700</td></tr>
-          <tr><td>城際交通（火車＋小巴）</td><td>€1,200–1,500</td></tr>
+          <tr><td>城際交通（火車＋包車）</td><td>€1,200–1,500</td></tr>
           <tr><td>景點門票（7人）</td><td>€750–1,300</td></tr>
           <tr><td>市內交通/雜支</td><td>€550–850</td></tr>
         </table>
-        <div class="note-box">機票已確定：5位成人（自己這家）TWD 345,975；大哥大嫂另外訂位，費用未列入。其餘地面費用因天數由 14 晚增至 16 晚（布達佩斯 +2 晚），已同步上修約 15%。</div>
+        <div class="note-box">機票已確定：5位成人（自己這家）TWD 345,975；大哥大嫂另外訂位，費用未列入。</div>
       </div>
     </section>
 
@@ -393,9 +482,10 @@
       <div class="card">
         <span class="phase-tag">出發前約6個月</span>
         <ul class="checklist">
-          <li><span class="chk"></span>搶 ÖBB Sparschiene 早鳥火車票（含維也納機場→布達佩斯）</li>
-          <li><span class="chk"></span>預約哈爾施塔特→庫倫洛夫接駁小巴</li>
+          <li><span class="chk"></span>搶 ÖBB Sparschiene 早鳥火車票</li>
+          <li><span class="chk"></span>預約 CK Shuttle（哈爾施塔特→庫倫洛夫）</li>
           <li><span class="chk"></span>預約需提前訂票景點：匈牙利國會導覽、美泉宮時段票、布拉格城堡</li>
+          <li><span class="chk"></span>紐約咖啡館建議先訂位（常大排長龍）</li>
         </ul>
       </div>
       <div class="card">
@@ -422,35 +512,253 @@
       <div class="card">
         <h2>⚠️ 重要提醒</h2>
         <ul class="plain">
-          <li>落地維也納後直接入住休息，隔天再開始行程，不用擔心當天轉車</li>
+          <li>落地維也納後直接入住休息，隔天再開始行程</li>
           <li>塞切尼/魯達斯溫泉未滿14歲禁入</li>
           <li>哈爾施塔特鹽礦冬季末班纜車約16:00</li>
-          <li>庫倫洛夫城堡內部導覽11–3月關閉</li>
+          <li>庫倫洛夫城堡內部導覽11–3月關閉（塔樓、庭院仍開放，週一休）</li>
           <li>除夕、初一都在布拉格，可提前規劃年夜飯地點</li>
           <li>華航機票（自己一家5人）已出票確認，訂位代號 E7JKX4；大哥大嫂機票另外訂位中</li>
         </ul>
       </div>
       <div class="footer-note">
-        本行程為修訂版，價格、時刻、景點營運狀態請於出發前以官方資訊為準。<br>
-        版本 v1.4 · 更新日期 2026/07/25（合併家人共同編輯的 Google 表單內容）
+        地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
+        版本 v1.8 · 更新日期 2026/07/25（新增 Google 地圖景點連結）
       </div>
     </section>
 
   </main>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-  const buttons = document.querySelectorAll('#tabs button');
-  const panels = document.querySelectorAll('.panel');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      document.querySelector('main').scrollTo({top: 0, behavior: 'instant'});
-    });
+// ---- Real coordinates ----
+const PLACES = {
+  // overnight cities
+  vienna: {n:"維也納", l:"Wien", c:"Wien", ll:[48.2082, 16.3738]},
+  budapest: {n:"布達佩斯", l:"Budapest", c:"Budapest", ll:[47.4979, 19.0402]},
+  salzburg: {n:"薩爾斯堡", l:"Salzburg", c:"Salzburg", ll:[47.8095, 13.0550]},
+  hallstatt: {n:"哈爾施塔特", l:"Hallstatt", c:"Austria", ll:[47.5622, 13.6493]},
+  krumlov: {n:"庫倫洛夫", l:"Český Krumlov", c:"Czechia", ll:[48.8127, 14.3175]},
+  prague: {n:"布拉格", l:"Praha", c:"Praha", ll:[50.0755, 14.4378]},
+  // airports
+  tpe: {n:"桃園機場", l:"Taoyuan", c:"Taiwan", ll:[25.0777, 121.2328]},
+  vie_airport: {n:"維也納機場", l:"Flughafen Wien", c:"Wien", ll:[48.1103, 16.5697]},
+  prg_airport: {n:"布拉格機場", l:"Letiště Praha", c:"Praha", ll:[50.1008, 14.2600]},
+  // Vienna sights
+  hofburg: {n:"霍夫堡皇宮", l:"Hofburg", c:"Wien", ll:[48.2065, 16.3656]},
+  graben: {n:"格拉本大街", l:"Graben", c:"Wien", ll:[48.2089, 16.3700]},
+  schonbrunn: {n:"美泉宮", l:"Schönbrunn", c:"Wien", ll:[48.1845, 16.3122]},
+  belvedere: {n:"美景宮", l:"Belvedere", c:"Wien", ll:[48.1915, 16.3809]},
+  stephansdom: {n:"聖史蒂芬大教堂", l:"Stephansdom", c:"Wien", ll:[48.2085, 16.3731]},
+  musikverein: {n:"金色大廳", l:"Musikverein", c:"Wien", ll:[48.2005, 16.3727]},
+  sacher: {n:"薩赫咖啡館", l:"Café Sacher", c:"Wien", ll:[48.2036, 16.3695]},
+  // Budapest sights
+  parliament: {n:"國會大廈", l:"Országház", c:"Budapest", ll:[47.5072, 19.0456]},
+  nycafe: {n:"紐約咖啡館", l:"New York Café", c:"Budapest", ll:[47.4967, 19.0704]},
+  szimpla: {n:"廢墟酒吧", l:"Szimpla Kert", c:"Budapest", ll:[47.4966, 19.0631]},
+  fishermans: {n:"漁人堡", l:"Halászbástya", c:"Budapest", ll:[47.5021, 19.0347]},
+  matthias: {n:"馬加什教堂", l:"Mátyás-templom", c:"Budapest", ll:[47.5020, 19.0339]},
+  budacastle: {n:"布達城堡", l:"Budavári Palota", c:"Budapest", ll:[47.4960, 19.0396]},
+  szechenyi: {n:"塞切尼溫泉", l:"Széchenyi Fürdő", c:"Budapest", ll:[47.5187, 19.0819]},
+  greatmarket: {n:"中央市場", l:"Nagyvásárcsarnok", c:"Budapest", ll:[47.4874, 19.0587]},
+  chainbridge: {n:"鏈橋", l:"Széchenyi lánchíd", c:"Budapest", ll:[47.4986, 19.0435]},
+  szentendre: {n:"聖安德烈小鎮", l:"Szentendre", c:"Hungary", ll:[47.6695, 19.0776]},
+  // Salzburg sights
+  hohensalzburg: {n:"薩爾斯堡要塞", l:"Festung Hohensalzburg", c:"Salzburg", ll:[47.7950, 13.0468]},
+  mozart: {n:"莫札特出生地", l:"Mozarts Geburtshaus", c:"Salzburg", ll:[47.8000, 13.0435]},
+  getreidegasse: {n:"糧食胡同", l:"Getreidegasse", c:"Salzburg", ll:[47.8003, 13.0440]},
+  // Prague sights
+  oldtown: {n:"老城廣場天文鐘", l:"Staroměstské náměstí", c:"Praha", ll:[50.0870, 14.4207]},
+  charlesbridge: {n:"查理大橋", l:"Karlův most", c:"Praha", ll:[50.0865, 14.4114]},
+  powdertower: {n:"火藥塔", l:"Prašná brána", c:"Praha", ll:[50.0872, 14.4278]},
+  praguecastle: {n:"布拉格城堡", l:"Pražský hrad", c:"Praha", ll:[50.0910, 14.4016]},
+  stvitus: {n:"聖維特大教堂", l:"Katedrála sv. Víta", c:"Praha", ll:[50.0909, 14.4006]},
+  goldenlane: {n:"黃金巷", l:"Zlatá ulička", c:"Praha", ll:[50.0918, 14.4041]},
+  vysehrad: {n:"高堡區", l:"Vyšehrad", c:"Praha", ll:[50.0641, 14.4180]},
+  dancinghouse: {n:"跳舞的房子", l:"Tančící dům", c:"Praha", ll:[50.0755, 14.4142]}
+};
+
+// Route order for the overview map (numbers 1-6 = order of overnight cities)
+const ROUTE = ["vienna","budapest","salzburg","hallstatt","krumlov","prague"];
+const STAY = {
+  vienna:   "1/22–25・3晚",
+  budapest: "1/25–30・5晚",
+  salzburg: "1/30–2/1・2晚",
+  hallstatt:"2/1–2・1晚",
+  krumlov:  "2/2–3・1晚",
+  prague:   "2/3–7・4晚"
+};
+const ROUTE_LEGS = [
+  ["vienna","budapest"],
+  ["budapest","salzburg"],
+  ["salzburg","hallstatt"],
+  ["hallstatt","krumlov"],
+  ["krumlov","prague"]
+];
+
+const TILE = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const ATTR = '&copy; OpenStreetMap';
+
+function numIcon(txt, side){
+  return L.divIcon({
+    className: "",
+    html: '<div class="pin-num'+(side?' side':'')+'">'+txt+'</div>',
+    iconSize: side?[22,22]:[26,26],
+    iconAnchor: side?[11,11]:[13,13]
   });
+}
+
+let overviewDone = false;
+function initOverview(){
+  if(overviewDone) return;
+  const el = document.getElementById("mapOverview");
+  if(!el || !el.offsetParent) return;
+  overviewDone = true;
+  const map = L.map(el, {scrollWheelZoom:false});
+  L.tileLayer(TILE,{attribution:ATTR, maxZoom:18}).addTo(map);
+
+  // ground legs
+  ROUTE_LEGS.forEach(function(leg){
+    L.polyline([PLACES[leg[0]].ll, PLACES[leg[1]].ll],
+      {color:"#c9622f", weight:4, opacity:.85, dashArray:"8,7"}).addTo(map);
+  });
+  // day trip
+  L.polyline([PLACES.budapest.ll, PLACES.szentendre.ll],
+    {color:"#b8935a", weight:3, opacity:.8, dashArray:"4,6"}).addTo(map);
+  L.marker(PLACES.szentendre.ll,{icon:numIcon("★",true)})
+    .addTo(map)
+    .bindTooltip('<b>聖安德烈小鎮</b><i>'+PLACES.szentendre.l+'</i>', {permanent:true, direction:"right", className:"lbl lbl-side", offset:[10,0]})
+    .bindPopup("聖安德烈小鎮 "+PLACES.szentendre.l+"<br>1/28 一日遊（不過夜）");
+
+  // numbered stops — the number is the order you sleep there
+  ROUTE.forEach(function(k,i){
+    L.marker(PLACES[k].ll,{icon:numIcon(i+1)})
+      .addTo(map)
+      .bindTooltip('<b>'+(i+1)+'. '+PLACES[k].n+'</b><i>'+PLACES[k].l+'</i>',
+        {permanent:true, direction:"right", className:"lbl", offset:[12,0]})
+      .bindPopup("<b>第"+(i+1)+"站　"+PLACES[k].n+"</b><br>"+PLACES[k].l+"<br>"+STAY[k]);
+  });
+
+  const bounds = L.latLngBounds(ROUTE.map(k=>PLACES[k].ll).concat([PLACES.szentendre.ll]));
+  map.fitBounds(bounds,{padding:[30,30]});
+}
+
+const dayMapsDone = new WeakSet();
+function initDayMaps(){
+  document.querySelectorAll("#days .daymap").forEach(function(el){
+    if(dayMapsDone.has(el)) return;
+    if(!el.offsetParent) return;
+    dayMapsDone.add(el);
+
+    const keys = el.dataset.stops.split(",").map(s=>s.trim()).filter(k=>PLACES[k]);
+    if(!keys.length) return;
+    const mode = el.dataset.mode || "local";
+
+    const map = L.map(el, {
+      scrollWheelZoom:false, zoomControl:false,
+      dragging:true, attributionControl:false
+    });
+    L.tileLayer(TILE,{maxZoom:18}).addTo(map);
+
+    if(keys.length > 1 && mode !== "air"){
+      const color = mode==="rail" ? "#c9622f" : (mode==="bus" ? "#7a3b5e" : "#3d6b7d");
+      L.polyline(keys.map(k=>PLACES[k].ll),
+        {color:color, weight:3.5, opacity:.85, dashArray:"7,6"}).addTo(map);
+    }
+
+    keys.forEach(function(k,i){
+      L.marker(PLACES[k].ll,{icon:numIcon(i+1, keys.length>2)})
+        .addTo(map)
+        .bindTooltip('<b>'+PLACES[k].n+'</b><i>'+PLACES[k].l+'</i>',
+          {permanent:true, direction:"right", className:"lbl lbl-day", offset:[10,0]})
+        .bindPopup(PLACES[k].n+"<br>"+PLACES[k].l);
+    });
+
+    if(mode === "air"){
+      // long-haul: just centre on the European end
+      map.setView(PLACES[keys[keys.length-1]].ll, 4);
+    } else if(keys.length === 1){
+      map.setView(PLACES[keys[0]].ll, 13);
+    } else {
+      map.fitBounds(L.latLngBounds(keys.map(k=>PLACES[k].ll)),{padding:[28,28]});
+    }
+
+    buildMapLinks(el, keys, mode);
+  });
+}
+
+// ---- Google Maps links ----
+function gPlace(k){
+  const p = PLACES[k];
+  const q = encodeURIComponent(p.l + (p.c && p.c !== p.l ? ", " + p.c : ""));
+  return "https://www.google.com/maps/search/?api=1&query=" + q;
+}
+function gRoute(keys, mode){
+  const enc = k => encodeURIComponent(PLACES[k].l + (PLACES[k].c && PLACES[k].c !== PLACES[k].l ? ", " + PLACES[k].c : ""));
+  let url = "https://www.google.com/maps/dir/?api=1"
+          + "&origin=" + enc(keys[0])
+          + "&destination=" + enc(keys[keys.length-1]);
+  if(keys.length > 2){
+    url += "&waypoints=" + keys.slice(1,-1).map(enc).join("%7C");
+  }
+  const tm = mode === "local" ? "walking" : (mode === "bus" ? "driving" : "transit");
+  return url + "&travelmode=" + tm;
+}
+
+function buildMapLinks(mapEl, keys, mode){
+  if(mode === "air") return;
+  const wrap = document.createElement("div");
+  wrap.className = "gmaps";
+
+  const head = document.createElement("div");
+  head.className = "gmaps-head";
+  head.textContent = "📍 在 Google 地圖開啟";
+  wrap.appendChild(head);
+
+  const row = document.createElement("div");
+  row.className = "gmaps-row";
+  keys.forEach(function(k){
+    const a = document.createElement("a");
+    a.className = "gchip";
+    a.href = gPlace(k);
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = PLACES[k].n;
+    row.appendChild(a);
+  });
+  if(keys.length > 1){
+    const a = document.createElement("a");
+    a.className = "gchip route";
+    a.href = gRoute(keys, mode);
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = (mode === "local" ? "🚶 當日路線" : "🧭 導航路線");
+    row.appendChild(a);
+  }
+  wrap.appendChild(row);
+
+  // insert directly under the map, above the text body
+  mapEl.parentNode.insertBefore(wrap, mapEl.nextSibling);
+}
+
+// ---- tabs ----
+const buttons = document.querySelectorAll('#tabs button');
+const panels = document.querySelectorAll('.panel');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'instant'});
+    setTimeout(function(){
+      if(btn.dataset.tab === 'overview') initOverview();
+      if(btn.dataset.tab === 'days') initDayMaps();
+    }, 60);
+  });
+});
+
+window.addEventListener('load', function(){ setTimeout(initOverview, 100); });
 </script>
 
 </body>
