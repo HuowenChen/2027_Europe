@@ -139,6 +139,22 @@
     white-space: nowrap;
   }
   .gchip:active { background: var(--cream); }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .cbtn {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12.5px; text-decoration: none;
+    color: #fff; background: var(--navy);
+    border-radius: 100px; padding: 7px 13px; white-space: nowrap;
+  }
+  .cbtn.alt { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+  .cbtn:active { opacity: .75; }
+  .addr-box {
+    background: var(--cream); border: 1px solid var(--line);
+    border-radius: 10px; padding: 9px 12px; margin-top: 10px;
+    font-size: 13px; line-height: 1.6;
+  }
+  .addr-box .lbl { font-size: 10.5px; color: var(--muted); letter-spacing: .5px; }
+  .addr-box .a { font-weight: 700; color: var(--navy); }
   .gchip.route {
     background: var(--navy);
     color: #fff;
@@ -156,7 +172,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v2.4 · 2026/08/25</div>
+      <div class="ver-badge">v2.5 · 2026/08/25</div>
     </div>
   </header>
 
@@ -489,6 +505,17 @@
           <tr><td>金額</td><td>€1,407.12（約 NT$52,063）</td></tr>
           <tr><td>聯絡</td><td>+43 1 39507520<br>viennab@adina.eu</td></tr>
         </table>
+        <div class="addr-box">
+          <div class="lbl">ADDRESS</div>
+          <div class="a">Canettistrasse 3, 1100 Wien, Austria</div>
+          <div style="color:var(--muted);font-size:11.5px">維也納第10區 Favoriten</div>
+        </div>
+        <div class="contact-row">
+          <a class="cbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Adina%20Apartment%20Hotel%20Vienna%20Belvedere%2C%20Canettistrasse%203%2C%201100%20Wien%2C%20Austria">📍 地圖導航</a>
+          <a class="cbtn alt" href="tel:+43139507520">📞 +43 1 39507520</a>
+          <a class="cbtn alt" href="mailto:viennab@adina.eu">✉️ Email</a>
+          <a class="cbtn alt" target="_blank" rel="noopener" href="https://adinahotels.com/en/apartments/vienna-belvedere/">🌐 官網</a>
+        </div>
         <div class="note-box">24h 櫃檯、可寄放行李；洗碗機＋洗脫烘；樓下 Hofer；步行 6–10 分到中央車站。</div>
         <div class="alert-box">📧 待辦：寫信要求兩間<b>連通或同層相鄰</b>，並為 Room 1 補加早鳥入住。<br>💳 入住時每間預授權 €150（共 €300）。</div>
       </div>
@@ -503,7 +530,17 @@
           <tr><td>金額</td><td>NT$58,939（每晚約 11,788）</td></tr>
           <tr><td>房東</td><td>Zsuzsanna（超讚房東・16年）</td></tr>
         </table>
-        <div class="note-box">電梯直達無台階｜免費洗衣機＋烘衣機＋洗碗機｜兩間廚房三套衛浴｜評分 4.94。</div>
+        <div class="addr-box">
+          <div class="lbl">ADDRESS</div>
+          <div class="a">Kecskeméti utca, Budapest 1053</div>
+          <div style="color:var(--muted);font-size:11.5px">第5區 Belváros・Ferenciek tere 與 Kálvin tér 之間</div>
+        </div>
+        <div class="alert-box">⚠️ Airbnb 僅在訂房後才提供<b>完整門牌號碼</b>，請從 Airbnb 訂單頁抄下確切地址再導航，下方連結僅定位到街道。</div>
+        <div class="contact-row">
+          <a class="cbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kecskem%C3%A9ti%20utca%2C%20Budapest%201053%2C%20Hungary">📍 街道位置</a>
+          <a class="cbtn alt" target="_blank" rel="noopener" href="https://www.airbnb.com.tw/rooms/50467520">🌐 Airbnb 房源</a>
+        </div>
+        <div class="note-box">電梯直達無台階｜免費洗衣機＋烘衣機＋洗碗機｜兩間廚房三套衛浴｜評分 4.94。聯絡房東請用 Airbnb App 訊息。</div>
         <div class="alert-box">📋 入住需<b>本人到場親自登記</b>，提前入住須先與房東約時間。住宅樓禁派對與噪音。</div>
       </div>
 
@@ -517,6 +554,15 @@
           <tr><td>時間</td><td>入住 15:00　退房 11:00</td></tr>
           <tr><td>金額</td><td>€657.49（約 NT$24,327）</td></tr>
         </table>
+        <div class="addr-box">
+          <div class="lbl">ADDRESS</div>
+          <div class="a">Rainerstrasse 7, 5020 Salzburg, Austria</div>
+          <div style="color:var(--muted);font-size:11.5px">近中央車站・米拉貝爾宮 300m</div>
+        </div>
+        <div class="contact-row">
+          <a class="cbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=master%20Mirabell%2C%20Rainerstrasse%207%2C%205020%20Salzburg%2C%20Austria">📍 地圖導航</a>
+          <a class="cbtn alt" target="_blank" rel="noopener" href="https://stay-master.com/salzburg/master-mirabell">🌐 官網</a>
+        </div>
         <div class="note-box">電梯直達無台階｜24h 行李寄放（2/1 包車來接前可用）｜洗碗機、免費公共洗衣房｜含 Mobility Ticket 大眾運輸免費。</div>
         <div class="alert-box">🍳 依薩爾茲堡 2025/10 法規，<b>房內不提供電熱烹飪設備</b>，這兩晚需外食。<br>🛋️ 7 人中有 2 人睡客廳沙發床。</div>
       </div>
@@ -528,6 +574,17 @@
           <tr><td>住宿</td><td>Pension Bergfried<br><span style="color:var(--muted);font-size:11.5px">Double Room with Balcony × 3</span></td></tr>
           <tr><td>費用</td><td>已含在旅行社套裝（不含早餐）</td></tr>
         </table>
+        <div class="addr-box">
+          <div class="lbl">ADDRESS</div>
+          <div class="a">Echerntalweg 3, 4830 Hallstatt, Austria</div>
+          <div style="color:var(--muted);font-size:11.5px">距湖畔 150m・步行 5 分到老城中心</div>
+        </div>
+        <div class="contact-row">
+          <a class="cbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pension%20Bergfried%2C%20Echerntalweg%203%2C%204830%20Hallstatt%2C%20Austria">📍 地圖導航</a>
+          <a class="cbtn alt" href="tel:+436608570684">📞 +43 660 857 0684</a>
+          <a class="cbtn alt" href="mailto:bergfried-hallstatt@gmx.at">✉️ Email</a>
+          <a class="cbtn alt" target="_blank" rel="noopener" href="https://www.bergfried-hallstatt.at/en">🌐 官網</a>
+        </div>
         <div class="alert-box">不含早餐，城市過夜稅需現場另付。</div>
       </div>
 
@@ -538,7 +595,18 @@
           <tr><td>住宿</td><td>Castle View Apartments<br><span style="color:var(--muted);font-size:11.5px">Comfort 2房 ＋ Panoramic 2房</span></td></tr>
           <tr><td>費用</td><td>已含在旅行社套裝（不含早餐）</td></tr>
         </table>
-        <div class="alert-box">不含早餐，城市過夜稅需現場另付。</div>
+        <div class="addr-box">
+          <div class="lbl">ADDRESS</div>
+          <div class="a">Šatlavská 140, 381 01 Český Krumlov</div>
+          <div style="color:var(--muted);font-size:11.5px">舊城區・主廣場旁 40m・Šatlava 餐廳對面</div>
+        </div>
+        <div class="contact-row">
+          <a class="cbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castle%20View%20Apartments%2C%20%C5%A0atlavsk%C3%A1%20140%2C%20381%2001%20%C4%8Cesk%C3%BD%20Krumlov%2C%20Czechia">📍 地圖導航</a>
+          <a class="cbtn alt" href="tel:+420731108677">📞 +420 731 108 677</a>
+          <a class="cbtn alt" href="mailto:info@castleview.cz">✉️ Email</a>
+          <a class="cbtn alt" target="_blank" rel="noopener" href="https://www.castleview.cz/en/">🌐 官網</a>
+        </div>
+        <div class="alert-box">不含早餐，城市過夜稅需現場另付。<br>⚠️ 位於舊城<b>徒步區窄巷</b>，包車無法開到門口，需在區外下車步行；Comfort 房在「一樓」（歐式=台灣二樓），需爬一層樓梯。</div>
       </div>
 
       <div class="card">
@@ -552,6 +620,16 @@
           <tr><td>金額</td><td>NT$48,068（每晚 12,017）</td></tr>
           <tr><td>房東</td><td>Filip　+420 736 402 331</td></tr>
         </table>
+        <div class="addr-box">
+          <div class="lbl">ADDRESS</div>
+          <div class="a">Lucemburská 1496/8, 130 00 Praha 3</div>
+          <div style="color:var(--muted);font-size:11.5px">Vinohrady・近 Jiřího z Poděbrad 地鐵站</div>
+        </div>
+        <div class="contact-row">
+          <a class="cbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Lucembursk%C3%A1%201496/8%2C%20130%2000%20Praha%203-Vinohrady%2C%20Czechia">📍 地圖導航</a>
+          <a class="cbtn alt" href="tel:+420736402331">📞 Filip +420 736 402 331</a>
+          <a class="cbtn alt" target="_blank" rel="noopener" href="https://www.airbnb.com.tw/rooms/1028927007700401984">🌐 Airbnb 房源</a>
+        </div>
         <div class="note-box">有煙霧與一氧化碳警報器；安靜時段 22:00–06:00，房內有噪音分貝感應器。</div>
         <div class="alert-box">⚠️ 電梯只到半層(mezzanine)，仍需爬一小段；樓中樓有內部樓梯。</div>
       </div>
@@ -652,7 +730,7 @@
       </div>
       <div class="footer-note">
         地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
-        版本 v2.4 · 更新日期 2026/08/25（住宿依日期排序＋標示退款條件）
+        版本 v2.5 · 更新日期 2026/08/25（各住宿加入地址、電話、官網與地圖導航）
       </div>
     </section>
 
