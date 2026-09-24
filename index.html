@@ -65,6 +65,12 @@
   .checklist li { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--line); font-size: 13.5px; }
   .checklist li:last-child { border-bottom: none; }
   .checklist .chk { flex: none; width: 18px; height: 18px; border: 1.5px solid var(--gold); border-radius: 5px; margin-top: 1px; }
+  .checklist li.done { color: var(--muted); text-decoration: line-through; }
+  .checklist li.done .chk { background: var(--gold); position: relative; }
+  .checklist li.done .chk::after { content: "✓"; color: #fff; font-size: 12px; position: absolute; left: 3px; top: -1px; text-decoration: none; }
+  .checklist li.urgent { font-weight: 600; }
+  .due { flex: none; margin-left: auto; font-size: 11px; color: #a4452c; background: #fbeee9; border-radius: 100px; padding: 1px 7px; height: fit-content; white-space: nowrap; }
+  .due.ok { color: #0a7a35; background: #eaf6ee; }
   .phase-tag { font-size: 11px; color: #fff; background: var(--gold); padding: 2px 8px; border-radius: 100px; display: inline-block; margin-bottom: 8px; }
   .footer-note { text-align: center; font-size: 11.5px; color: var(--muted); padding: 18px 20px 6px; line-height: 1.8; }
 
@@ -172,7 +178,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v3.0 · 2026/08/31</div>
+      <div class="ver-badge">v3.1 · 2026/09/21</div>
     </div>
   </header>
 
@@ -931,36 +937,71 @@
     <!-- PREP -->
     <section class="panel" id="prep">
       <div class="card">
-        <span class="phase-tag">出發前 6–9 個月</span>
+        <h2>📋 待辦事項</h2>
+        <div class="note-box">更新於 <b>2026/09/21</b>・距出發還有 <b>4 個月</b>（1/21 晚班機）。已查 Gmail 與家族共用表單，8/31 以來無新的訂房／票券確認信。</div>
+      </div>
+      <div class="card">
+        <span class="phase-tag">🔴 現在就該做</span>
         <ul class="checklist">
-          <li><span class="chk"></span>華航機票（自己一家5人）已出票，訂位代號 E7JKX4</li>
-          <li><span class="chk"></span>幫大哥大嫂另外訂機票，確認能否同班或銜接行程</li>
-          <li><span class="chk"></span>確認護照效期（離境後需≥3個月、10年內核發）＋追蹤 ETIAS 進度</li>
+          <li class="urgent"><span class="chk"></span><span>薩爾茲堡：點 8/25 stay-master 確認信的「Complete your booking」取得入住 PIN 碼（確認碼 TM7C2M）——<b>現場無櫃檯，沒完成進不了門</b></span><span class="due">尚未完成</span></li>
+          <li class="urgent"><span class="chk"></span><span>私訊維也納 Airbnb 房東 Bettina：①樓梯共幾階 ②1/22 早上可否寄放行李 ③長輩可否睡樓下房</span><span class="due">12/23 前決定</span></li>
+          <li class="urgent"><span class="chk"></span><span>大哥大嫂機票：確認是否同班 CI063／CI068，並記下訂位代號</span></li>
+          <li class="urgent"><span class="chk"></span><span>向典藏旅遊（Archie）索取 2/1 哈修塔特、2/2 庫倫洛夫的正式訂房確認信</span></li>
+        </ul>
+        <div class="note-box">💡 維也納這間無電梯＋螺旋梯，<b>12/23 是免費取消的最後一天</b>。房東回覆樓梯狀況後，若不理想還有時間換。</div>
+      </div>
+      <div class="card">
+        <span class="phase-tag">🟡 10 月</span>
+        <ul class="checklist">
+          <li><span class="chk"></span><span>10/6 起查 oebb.at：維也納→布達佩斯（1/25）、布達佩斯→薩爾茲堡（1/30）Sparschiene 早鳥票是否開賣</span><span class="due">10/6</span></li>
+          <li><span class="chk"></span><span>10/15 再查一次（2027 年時刻表通常 10 月中開放）</span><span class="due">10/15</span></li>
+          <li><span class="chk"></span><span>追蹤 ETIAS 上線日期（預計 2026 第四季；若出發前已開放就先申請，每人 €20）</span><span class="due">持續追蹤</span></li>
+          <li><span class="chk"></span><span>確認護照效期：離開申根區時需≥3 個月、且 10 年內核發（7 人都要）</span></li>
+        </ul>
+        <div class="note-box">🚆 注意：維也納 S-Bahn 主幹線 2026/9/7–2027/10 封閉整修，機場進市區請搭 ÖBB Railjet 或 CAT，不受影響。</div>
+      </div>
+      <div class="card">
+        <span class="phase-tag">🟢 11–12 月</span>
+        <ul class="checklist">
+          <li><span class="chk"></span><span>11/23、12/1 若早鳥票仍未開賣再查，買到即截圖存 App</span><span class="due">11/23・12/1</span></li>
+          <li><span class="chk"></span><span>旅平險＋不便險：共用表單已列南山人壽 500 萬，記得實際投保（旅行社只含責任保險）</span></li>
+          <li><span class="chk"></span><span>Kampa Park 除夕晚餐（2/5）訂位，註明 7 人＋河景／冬季花園</span><span class="due">12 月</span></li>
+          <li><span class="chk"></span><span>Café Imperial 官網訂位（可直選 7 人）</span><span class="due">12 月</span></li>
+          <li><span class="chk"></span><span>維也納 Airbnb 最終決定：保留或換房</span><span class="due">12/23 截止</span></li>
+          <li><span class="chk"></span><span>金色大廳音樂會 1/23 訂票</span></li>
+          <li><span class="chk"></span><span>美泉宮時段票（1/22）、匈牙利國會導覽（1/26）、布拉格城堡（2/5）</span></li>
         </ul>
       </div>
       <div class="card">
-        <span class="phase-tag">出發前約6個月</span>
+        <span class="phase-tag">🔵 出發前 1 個月（1 月初）</span>
         <ul class="checklist">
-          <li><span class="chk"></span>搶 ÖBB Sparschiene 早鳥火車票（維也納→布達佩斯、布達佩斯→薩爾茲堡）</li>
-          <li><span class="chk"></span>向旅行社確認 2/1、2/2 兩晚旅館的正式訂房確認信</li>
-          <li><span class="chk"></span>✅ 住宿全部訂妥</li>
-          <li><span class="chk"></span>薩爾茲堡：完成 stay-master「Complete your booking」以取得入住 PIN 碼</li>
-          <li><span class="chk"></span>問房東：抵達日可否早寄放行李、樓梯共幾階</li>
-          <li><span class="chk"></span>自行加保旅平險與不便險（旅行社僅含責任保險）</li>
-          <li><span class="chk"></span>預約需提前訂票景點：匈牙利國會導覽、美泉宮時段票、布拉格城堡</li>
-          <li><span class="chk"></span>紐約咖啡館建議先訂位（常大排長龍）</li>
-          <li><span class="chk"></span>中央咖啡館、德梅爾咖啡店訂位</li>
-          <li><span class="chk"></span>金色大廳音樂會訂票</li>
-          <li><span class="chk"></span>維也納交通券（48/72小時）</li>
+          <li><span class="chk"></span><span>Café Savoy（2/6）、Mincovna、Mlýnec 訂位</span></li>
+          <li><span class="chk"></span><span>請 Castle View 代訂 Krčma Šatlava（2/2 晚餐・7 人）</span></li>
+          <li><span class="chk"></span><span>中央咖啡館、德梅爾咖啡店、紐約咖啡館訂位</span></li>
+          <li><span class="chk"></span><span>查 salzwelten.at 確認哈爾施塔特鹽礦／纜車冬季班表</span></li>
+          <li><span class="chk"></span><span>溫泉浴場年齡規定（塞切尼、魯達斯未滿 14 歲不能進）</span></li>
+          <li><span class="chk"></span><span>布達佩斯 Airbnb 訂單頁抄下完整門牌地址</span></li>
+          <li><span class="chk"></span><span>維也納 48／72 小時交通券、SIM 卡</span></li>
+          <li><span class="chk"></span><span>備妥防滑防水保暖靴、泳具（含浴袍）、歐元／克朗／福林現金</span></li>
+          <li><span class="chk"></span><span>若想在布拉格除夕圍爐，查當地華人超市／餐廳</span></li>
         </ul>
       </div>
       <div class="card">
-        <span class="phase-tag">出發前1個月</span>
+        <span class="phase-tag">⏰ 取消期限一覽</span>
         <ul class="checklist">
-          <li><span class="chk"></span>查 salzwelten.at 確認哈爾施塔特鹽礦/纜車冬季班表</li>
-          <li><span class="chk"></span>確認溫泉浴場年齡規定，未滿14歲者改訂親子浴場</li>
-          <li><span class="chk"></span>備妥防滑防水保暖靴、泳具（含浴袍）、現金</li>
-          <li><span class="chk"></span>若想在布拉格圍爐，先查當地華人超市/餐廳</li>
+          <li><span class="chk"></span><span>維也納 Airbnb：免費取消至 <b>12/23</b></span><span class="due">12/23</span></li>
+          <li><span class="chk"></span><span>布達佩斯 Airbnb：免費取消至 <b>1/24</b></span><span class="due">1/24</span></li>
+          <li><span class="chk"></span><span>布拉格 Airbnb：部分退款至 <b>1/27</b></span><span class="due">1/27</span></li>
+          <li><span class="chk"></span><span>薩爾茲堡 master Mirabell：不可退款（已扣款）</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="phase-tag">✅ 已完成</span>
+        <ul class="checklist">
+          <li class="done"><span class="chk"></span><span>華航機票（一家 5 人）已出票 E7JKX4</span></li>
+          <li class="done"><span class="chk"></span><span>6 城住宿全部訂妥（16 晚）</span></li>
+          <li class="done"><span class="chk"></span><span>旅行社 3 段專車接送＋哈修塔特、CK 兩晚</span></li>
+          <li class="done"><span class="chk"></span><span>餐廳願望清單整理完成（13 間）</span></li>
         </ul>
       </div>
     </section>
@@ -992,7 +1033,7 @@
       </div>
       <div class="footer-note">
         地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
-        版本 v3.0 · 更新日期 2026/08/31（與家族共用表單同步・薩爾茲堡 PIN 待辦）
+        版本 v3.1 · 更新日期 2026/09/21（待辦事項改為時間軸・標註期限）
       </div>
     </section>
 
