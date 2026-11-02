@@ -168,6 +168,9 @@
     font-weight: 600;
   }
 
+  .ticket-box { margin-top:10px; border:1.5px dashed var(--gold); border-radius:12px; padding:10px 12px; background:#fffaf0; }
+  .tk-h { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+  .tk-h span { font-size:11px; color:var(--muted); font-weight:400; letter-spacing:.5px; }
   /* v3.4: food sub-tabs, day meals, toilets */
   .subtabs { display:flex; gap:6px; overflow-x:auto; margin:0 0 12px; padding-bottom:2px; -webkit-overflow-scrolling:touch; }
   .subtabs::-webkit-scrollbar { display:none; }
@@ -205,7 +208,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v3.4 · 2026/11/02</div>
+      <div class="ver-badge">v3.5 · 2026/11/02</div>
     </div>
   </header>
 
@@ -356,14 +359,30 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 3・1/23（六）</span><span class="city">維也納</span></div>
-        <div class="daymap" data-stops="schonbrunn,belvedere" data-mode="local"></div>
+        <div class="daymap" data-stops="schonbrunn,belvedere,karlskirche" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>環城大道 Ringstraße 散策：沃蒂夫教堂、市政廳、國會大廈、人民公園、霍夫堡、自然史博物館／藝術史博物館(二選一)</div>
           <div class="seg"><span class="seg-label">下午</span>卡爾教堂</div>
-          <div class="seg"><span class="seg-label">晚上</span>金色大廳(維也納音樂協會)聽音樂會 — 需提前訂票</div>
+          <div class="seg"><span class="seg-label">晚上</span>✅ <b>卡爾教堂 韋瓦第《四季》20:15</b>（7 張已購）</div>
+          <div class="ticket-box">
+            <div class="tk-h">🎫 門票・Orchester 1756 <span>訂單 B1120405</span></div>
+            <table class="route-table">
+              <tr><td>演出</td><td><b>VIVALDI: Vier Jahreszeiten</b><br>2027/1/23（六）20:15 開演</td></tr>
+              <tr><td>地點</td><td>Karlskirche, Karlsplatz 10, 1040 Wien<br><span style="color:var(--muted);font-size:11.5px">地鐵 U1／U2／U4 Karlsplatz 站</span></td></tr>
+              <tr><td>座位</td><td><b>第 5 排 11–15 號</b>（5 席連座）<br><b>第 6 排 13、14 號</b>（2 席）</td></tr>
+              <tr><td>票種</td><td>Category I：成人 4 張 €56、學生 3 張 €37</td></tr>
+              <tr><td>總額</td><td><b>€335</b>（信用卡已付，訂購人 YI WEI SU）</td></tr>
+            </table>
+            <div class="alert-box">⏰ <b>19:45 開放入場，開演後不能進場</b>，中途離場不能再進。<br>🚻 <b>教堂內沒有廁所</b>（在教堂外），請先在 Wien Museum 或 Resselpark 公廁上好再進場。<br>📱 手機出示或列印 QR Code，<b>7 張各自一張</b>；同一張票只認第一個掃描的人。<br>❌ 依規定不可退換票。</div>
+            <div class="contact-row">
+              <a class="cbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Karlskirche%2C%20Karlsplatz%2010%2C%201040%20Wien">📍 卡爾教堂</a>
+              <a class="cbtn alt" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1CAh9o5KXj52577Qv71mjRFKAdSppyJyO/view">🎫 開啟門票 PDF</a>
+              <a class="cbtn alt" href="tel:+4319094011">📞 +43 1 909 4011</a>
+            </div>
+          </div>
           <div class="seg"><span class="seg-label">交通</span>大眾運輸(地鐵/電車)</div>
           <button type="button" class="gofood" data-city="vienna" data-day="vd3">🍽️ 看今天順路的餐廳</button>
-          <div class="wc-box"><div class="wc-h">🚻 沿途廁所</div><ul><li><span class="wk wk-buy">消費</span><span><b>Café Landtmann</b>・早餐時先上</span></li><li><span class="wk wk-tix">門票</span><span><b>藝術史／自然史博物館</b>・館內多處</span></li><li><span class="wk wk-free">免費</span><span><b>卡爾廣場 Resselpark 公廁</b>・2025 年新建，卡爾教堂旁</span></li><li><span class="wk wk-free">免費</span><span><b>Wien Museum</b>・Karlsplatz 8，不用門票即可使用</span></li><li><span class="wk wk-tix">門票</span><span><b>國家歌劇院／金色大廳</b>・觀眾使用，中場人多請提早</span></li></ul></div>
+          <div class="wc-box"><div class="wc-h">🚻 沿途廁所</div><ul><li><span class="wk wk-buy">消費</span><span><b>Café Landtmann</b>・早餐時先上</span></li><li><span class="wk wk-tix">門票</span><span><b>藝術史／自然史博物館</b>・館內多處</span></li><li><span class="wk wk-free">免費</span><span><b>卡爾廣場 Resselpark 公廁</b>・2025 年新建，卡爾教堂旁</span></li><li><span class="wk wk-free">免費</span><span><b>Wien Museum</b>・Karlsplatz 8，不用門票即可使用</span></li><li><span class="wk wk-paid">注意</span><span><b>卡爾教堂內沒有廁所</b>・19:45 進場前先在 Wien Museum 或 Resselpark 上好</span></li></ul></div>
         </div>
       </div>
 
@@ -781,7 +800,7 @@
       <nav class="subtabs" id="foodTabs"><button type="button" data-city="vienna" class="active">維也納</button><button type="button" data-city="budapest">布達佩斯</button><button type="button" data-city="salzburg">薩爾斯堡</button><button type="button" data-city="hallstatt">哈修塔特</button><button type="button" data-city="krumlov">庫倫洛夫</button><button type="button" data-city="prague">布拉格</button></nav>
 <div class="city-panel active" data-city="vienna">
 <div class="card mealday" id="vd2"><h2>Day 2・1/22（五）抵達日</h2><div class="mroute">🧭 機場 → Ottakring 住處 → 美泉宮 → 國家圖書館 → 聖史蒂芬大教堂 → 格拉本大街</div><div class="meal"><span class="mslot">早午餐</span><div class="mbody"><b>Brunnenmarkt 市集攤位</b><div class="mwhy">住處旁的街頭市集，放完行李就近吃土耳其烤餅、麵包和熱飲，最省力。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Brunnenmarkt%2C%201160%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">午餐</span><div class="mbody"><b>Café Gloriette</b><span class="mtag bk">需訂位</span><div class="mwhy">美泉宮花園山丘頂的凱旋亭內，邊吃邊俯瞰宮殿與維也納，逛完花園正好上去。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Gloriette%2C%20Sch%C3%B6nbrunner%20Schlosspark%2C%201130%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">備案</span><div class="mbody"><b>Café Residenz</b><div class="mwhy">美泉宮 Kavalierstrakt 內，有蘋果捲現場示範，不想爬坡就選這間。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Residenz%2C%20Kavalierstrakt%2052%2C%201130%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">下午茶</span><div class="mbody"><b>Demel</b><div class="mwhy">從國家圖書館走到 Kohlmarkt 約 5 分鐘，買糖漬紫羅蘭、吃 Sacher 以外的另一款名蛋糕。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Demel%2C%20Kohlmarkt%2014%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">晚餐</span><div class="mbody"><b>Figlmüller Bäckerstraße</b><span class="mtag bk">需訂位</span><span class="mtag">豬肉</span><div class="mwhy">聖史蒂芬大教堂後方，巨大的炸豬排（非牛肉），7 人一定要先訂。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Figlm%C3%BCller%2C%20B%C3%A4ckerstra%C3%9Fe%206%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">輕食</span><div class="mbody"><b>Trześniewski</b><div class="mwhy">格拉本旁的百年開放式小三明治店，站著吃很快，適合時差累了的晚上。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Trze%C5%9Bniewski%2C%20Dorotheergasse%201%2C%201010%20Wien">📍 地圖</a></div></div></div>
-<div class="card mealday" id="vd3"><h2>Day 3・1/23（六）環城大道</h2><div class="mroute">🧭 沃蒂夫教堂 → 市政廳 → 國會 → 人民公園 → 霍夫堡 → 藝術史／自然史博物館 → 卡爾教堂 → 晚上音樂會</div><div class="meal"><span class="mslot">早餐</span><div class="mbody"><b>Café Landtmann</b><div class="mwhy">就在市政廳、城堡劇院旁，環城大道起點；佛洛伊德常去的老咖啡館。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Landtmann%2C%20Universit%C3%A4tsring%204%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">午餐</span><div class="mbody"><b>Café Central</b><span class="mtag bk">需訂位</span><div class="mwhy">從霍夫堡走過去 3 分鐘，官網務必先訂 7 人位；點皇帝煎餅、炸豬排、米朗琪咖啡。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Central%2C%20Herrengasse%2014%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">備案</span><div class="mbody"><b>藝術史博物館圓頂咖啡廳</b><div class="mwhy">在博物館大圓頂下用餐，看展中途休息不用出館（需門票）。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kunsthistorisches%20Museum%2C%20Maria-Theresien-Platz%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">下午</span><div class="mbody"><b>Naschmarkt 市集</b><div class="mwhy">卡爾教堂旁，週六還有跳蚤市場；小吃攤與 NENI 以色列菜，邊走邊吃。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Naschmarkt%2C%201060%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">晚餐</span><div class="mbody"><b>Ribs of Vienna</b><span class="mtag bk">需訂位</span><span class="mtag">豬肋排</span><div class="mwhy">金色大廳步行可達的地窖餐廳，一公尺烤豬肋排，共用表註記的不吃牛首選。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Ribs%20of%20Vienna%2C%20Weihburggasse%2022%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">開演前</span><div class="mbody"><b>Café Sacher</b><div class="mwhy">國家歌劇院正對面，看《唐・喬望尼》前先吃 Sacher 蛋糕墊胃。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Sacher%2C%20Philharmoniker%20Str.%204%2C%201010%20Wien">📍 地圖</a></div></div></div>
+<div class="card mealday" id="vd3"><h2>Day 3・1/23（六）環城大道</h2><div class="mroute">🧭 沃蒂夫教堂 → 市政廳 → 國會 → 人民公園 → 霍夫堡 → 藝術史／自然史博物館 → 卡爾教堂 → 20:15 卡爾教堂《四季》音樂會</div><div class="meal"><span class="mslot">早餐</span><div class="mbody"><b>Café Landtmann</b><div class="mwhy">就在市政廳、城堡劇院旁，環城大道起點；佛洛伊德常去的老咖啡館。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Landtmann%2C%20Universit%C3%A4tsring%204%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">午餐</span><div class="mbody"><b>Café Central</b><span class="mtag bk">需訂位</span><div class="mwhy">從霍夫堡走過去 3 分鐘，官網務必先訂 7 人位；點皇帝煎餅、炸豬排、米朗琪咖啡。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Central%2C%20Herrengasse%2014%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">備案</span><div class="mbody"><b>藝術史博物館圓頂咖啡廳</b><div class="mwhy">在博物館大圓頂下用餐，看展中途休息不用出館（需門票）。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kunsthistorisches%20Museum%2C%20Maria-Theresien-Platz%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">下午</span><div class="mbody"><b>Naschmarkt 市集</b><div class="mwhy">卡爾教堂旁，週六還有跳蚤市場；小吃攤與 NENI 以色列菜，邊走邊吃。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Naschmarkt%2C%201060%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">晚餐</span><div class="mbody"><b>Ribs of Vienna</b><span class="mtag bk">需訂位</span><span class="mtag">豬肋排</span><div class="mwhy">金色大廳步行可達的地窖餐廳，一公尺烤豬肋排，共用表註記的不吃牛首選。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Ribs%20of%20Vienna%2C%20Weihburggasse%2022%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">開演前</span><div class="mbody"><b>晚餐時間抓 17:30–19:15</b><div class="mwhy">19:45 開放入場、20:15 開演；Ribs of Vienna 走到卡爾教堂約 15 分鐘。想吃輕一點可在卡爾廣場旁的 Naschmarkt 解決。</div></div></div></div>
 <div class="card mealday" id="vd4"><h2>Day 4・1/24（日）美景宮／普拉特 → 百水公寓 → 城市公園</h2><div class="mroute">🧭 上午美景宮或普拉特 → 電車到百水公寓 → 城市公園（週日多數商店休息，餐廳照常）</div><div class="meal"><span class="mslot">早餐</span><div class="mbody"><b>Café Prückel</b><div class="mwhy">城市公園對面的 1950 年代老咖啡館，空間大、7 人好找位。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Pr%C3%BCckel%2C%20Stubenring%2024%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">午餐</span><div class="mbody"><b>Salm Bräu</b><span class="mtag bk">需訂位</span><span class="mtag">豬腳</span><div class="mwhy">美景宮下宮旁的自釀啤酒餐廳，烤豬腳、豬肋排，週日人多請先訂。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Salm%20Br%C3%A4u%2C%20Rennweg%208%2C%201030%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">百水公寓</span><div class="mbody"><b>Gasthaus Wild</b><div class="mwhy">百水公寓步行約 5 分鐘的傳統維也納小館。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Gasthaus%20Wild%2C%20Radetzkyplatz%201%2C%201030%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">晚餐</span><div class="mbody"><b>Plachutta Wollzeile</b><span class="mtag bk">需訂位</span><span class="mtag">🐄 牛肉</span><div class="mwhy">維也納名菜清燉牛肉 Tafelspitz 的代表店；有人不吃牛的話可點炸豬排或雞肉。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Plachutta%20Wollzeile%2C%20Wollzeile%2038%2C%201010%20Wien">📍 地圖</a></div></div><div class="meal"><span class="mslot">注意</span><div class="mbody"><b>普拉特 Schweizerhaus</b><div class="mwhy">冬季休業（約 3–10 月營業），去普拉特請改在摩天輪周邊簡餐。</div></div></div></div>
 <div class="card mealday" id="vd5"><h2>Day 5・1/25（一）早上離開</h2><div class="mroute">🧭 10:15 前出門 → 維也納中央車站 11:40 發車</div><div class="meal"><span class="mslot">早餐</span><div class="mbody"><b>住處自煮</b><div class="mwhy">公寓有廚房，前一天在 Brunnenmarkt 採買麵包、起司最省時。</div></div></div><div class="meal"><span class="mslot">車上</span><div class="mbody"><b>中央車站 Anker 麵包店</b><div class="mwhy">車站內連鎖麵包店，買三明治與飲料帶上車，2 小時 55 分車程。</div><a class="mlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Anker%2C%20Wien%20Hauptbahnhof">📍 地圖</a></div></div></div>
 
@@ -1049,6 +1068,7 @@
           <tr><td>薩爾茲堡住宿（已訂2晚）</td><td>€657（約 NT$24,327）</td></tr>
           <tr><td>餐飲（7人16天）</td><td>€3,400–5,700</td></tr>
           <tr><td>城際火車（前2段，接送已含在套裝）</td><td>€400–600</td></tr>
+          <tr><td>1/23 卡爾教堂音樂會（7 張已付）</td><td>€335</td></tr>
           <tr><td>景點門票（7人）</td><td>€750–1,300</td></tr>
           <tr><td>市內交通/雜支</td><td>€550–850</td></tr>
         </table>
@@ -1076,13 +1096,12 @@
       <div class="card">
         <span class="phase-tag">🟡 11 月</span>
         <ul class="checklist">
-          <li class="urgent"><span class="chk"></span><span><b>11/30（一）下午 4 點</b>（維也納當地 09:00）搶金色大廳 1/23 音樂會票——一般開賣日</span><span class="due">11/30</span></li>
+          <li class="done"><span class="chk"></span><span>1/23 音樂會：已改訂卡爾教堂《四季》，<b>不用再搶金色大廳</b></span></li>
           <li><span class="chk"></span><span>維也納愛樂 1/22–25 沒有場次，<b>不用追愛樂</b>；當天是其他樂團或古裝莫札特音樂會</span></li>
-          <li><span class="chk"></span><span>若想保險，先訂維也納莫札特樂團 1/23 的票（€69–139，開演前 3 天可免費取消）</span></li>
           <li><span class="chk"></span><span>追蹤 ETIAS 上線日期（預計 2026 第四季；若出發前已開放就先申請，每人 €20）</span><span class="due">持續追蹤</span></li>
           <li><span class="chk"></span><span>確認護照效期：離開申根區時需≥3 個月、且 10 年內核發（7 人都要）</span></li>
         </ul>
-        <div class="note-box">👔 金色大廳<b>明文請勿穿運動服</b>，且大衣背包一律不可帶進場必須寄放。每人要打包一套能見人的衣服——這會影響行李，現在就要決定。</div>
+        <div class="note-box">🧥 卡爾教堂冬天室內偏冷，聽音樂會請穿保暖外套；建議每人仍帶一套整齊的衣服，晚餐與音樂會都用得上。</div>
       </div>
       <div class="card">
         <span class="phase-tag">🟢 12 月</span>
@@ -1128,6 +1147,7 @@
           <li class="done"><span class="chk"></span><span>6 城住宿全部訂妥（16 晚）</span></li>
           <li class="done"><span class="chk"></span><span>旅行社 3 段專車接送＋哈修塔特、CK 兩晚</span></li>
           <li class="done"><span class="chk"></span><span><b>1/25 維也納→布達佩斯火車票（7 人・€265.30）</b></span></li>
+          <li class="done"><span class="chk"></span><span><b>1/23 卡爾教堂《四季》音樂會（7 人・€335・訂單 B1120405）</b></span></li>
           <li class="done"><span class="chk"></span><span>餐廳願望清單整理完成（13 間）</span></li>
         </ul>
       </div>
@@ -1160,7 +1180,7 @@
       </div>
       <div class="footer-note">
         地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
-        版本 v3.4 · 更新日期 2026/11/02（餐廳依城市分頁、依每日路線推薦；每日行程加註沿途廁所）
+        版本 v3.5 · 更新日期 2026/11/02（加入 1/23 卡爾教堂《四季》音樂會門票 7 張）
       </div>
     </section>
 
@@ -1190,6 +1210,7 @@ const PLACES = {
   stephansdom: {n:"聖史蒂芬大教堂", l:"Stephansdom", c:"Wien", ll:[48.2085, 16.3731]},
   musikverein: {n:"金色大廳", l:"Musikverein", c:"Wien", ll:[48.2005, 16.3727]},
   sacher: {n:"薩赫咖啡館", l:"Café Sacher", c:"Wien", ll:[48.2036, 16.3695]},
+  karlskirche: {n:"卡爾教堂", l:"Karlskirche", c:"Wien", ll:[48.1982, 16.3719]},
   // Budapest sights
   parliament: {n:"國會大廈", l:"Országház", c:"Budapest", ll:[47.5072, 19.0456]},
   nycafe: {n:"紐約咖啡館", l:"New York Café", c:"Budapest", ll:[47.4967, 19.0704]},
