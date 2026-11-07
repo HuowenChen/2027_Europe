@@ -176,6 +176,28 @@
   .subtabs::-webkit-scrollbar { display:none; }
   .subtabs button { flex:none; border:1px solid var(--line); background:#fff; color:var(--navy); border-radius:100px; padding:6px 13px; font-size:13px; font-family:inherit; }
   .subtabs button.active { background:var(--navy); color:#fff; border-color:var(--navy); font-weight:700; }
+  .subtabs.datetabs { margin-top:-4px; }
+  .subtabs.datetabs button { padding:5px 11px; font-size:12.5px; background:#faf7f2; }
+  .subtabs.datetabs button.active { background:var(--gold, #c8a45c); border-color:var(--gold, #c8a45c); color:#1c2b3a; }
+  #days .day-card.dhide { display:none; }
+  .daynav { display:flex; justify-content:space-between; gap:8px; margin:4px 0 14px; }
+  .daynav button { flex:1; font:inherit; font-size:13px; border:1px solid var(--line); background:#fff; color:var(--navy); border-radius:10px; padding:9px 10px; }
+  .daynav button:disabled { opacity:.35; }
+  .bsplit { width:100%; border-collapse:collapse; font-size:12.5px; }
+  .bsplit th, .bsplit td { padding:7px 5px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .bsplit th { color:var(--muted); font-size:11px; font-weight:600; text-align:left; }
+  .bsplit td.n, .bsplit th.n { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .bsplit tr.cat td { background:#faf7f2; font-weight:700; color:var(--navy); }
+  .bsplit tr.sub td { font-weight:700; border-top:2px solid var(--navy); }
+  .bsplit small { color:var(--muted); display:block; font-size:11px; }
+  @media (max-width:480px){ .bsplit th:nth-child(2), .bsplit td:nth-child(2){display:none} .bsplit{font-size:12px} .bsplit td:first-child{min-width:96px} .bsplit th,.bsplit td{padding:6px 3px} .bsplit td.n{font-size:11.5px} }
+  .bsplit-note { font-size:11px; color:var(--muted); margin:4px 0 0; }
+  .btot { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+  .btot div { border:1px solid var(--line); border-radius:12px; padding:10px 12px; }
+  .btot b { display:block; font-size:17px; color:var(--navy); font-variant-numeric:tabular-nums; }
+  .btot span { font-size:11.5px; color:var(--muted); }
+  .qlist { margin:6px 0 0; padding-left:18px; font-size:13px; }
+  .qlist li { margin-bottom:6px; }
   .city-panel { display:none; }
   .city-panel.active { display:block; animation: fade .2s ease; }
   .mroute { font-size:12.5px; color:var(--muted); background:var(--cream); border-radius:10px; padding:8px 10px; margin-bottom:6px; line-height:1.6; }
@@ -208,7 +230,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v3.6 · 2026/11/07</div>
+      <div class="ver-badge">v3.7 · 2026/11/07</div>
     </div>
   </header>
 
@@ -1057,22 +1079,37 @@
     <!-- BUDGET -->
     <section class="panel" id="budget">
       <div class="card">
-        <h2>💰 高階預算估算（僅供參考）</h2>
-        <table class="budget-table">
-          <tr><th>類別</th><th>估算</th></tr>
-          <tr><td>國際機票（5人已確定）</td><td>TWD 345,975</td></tr>
-          <tr><td>典藏旅行社套裝（哈修塔特、CK 2晚住宿＋3段接送＋保險）</td><td>NT$137,500（已付訂金 NT$70,000，尾款 NT$67,500）</td></tr>
-          <tr><td>布拉格住宿（已訂4晚）</td><td>TWD 48,068</td></tr>
-          <tr><td>維也納住宿（已訂3晚・已付，12/23 前可免費取消）</td><td>NT$66,043</td></tr>
-          <tr><td>布達佩斯住宿（已訂5晚）</td><td>TWD 58,939</td></tr>
-          <tr><td>薩爾茲堡住宿（已訂2晚）</td><td>€657（約 NT$24,327）</td></tr>
-          <tr><td>餐飲（7人16天）</td><td>€3,400–5,700</td></tr>
-          <tr><td>城際火車（前2段，接送已含在套裝）</td><td>€400–600</td></tr>
-          <tr><td>1/23 卡爾教堂音樂會（7 張已付）</td><td>€335</td></tr>
-          <tr><td>景點門票（7人）</td><td>€750–1,300</td></tr>
-          <tr><td>市內交通/雜支</td><td>€550–850</td></tr>
-        </table>
-        <div class="note-box">機票已確定：5位成人（自己這家）TWD 345,975；大哥大嫂另外訂位，費用未列入。</div>
+        <h2>💰 預算分攤：Will 家 vs 大哥大嫂</h2>
+        <div class="note-box">共同費用暫依<b>人數 5:2</b> 分攤；音樂會依實際票種（成人／學生）分開算。歐元以 1 € ≈ NT$36 換算（同共用表）。「估」為區間估計，實際花費出來再更新。</div>
+        <div class="btot"><div><span>Will 家（5 人）</span><b>NT$726,155–812,554</b><span>含機票</span></div><div><span>大哥大嫂（2 人）</span><b>NT$152,892–187,453</b><span>不含機票（金額待提供）</span></div></div>
+<p class="bsplit-note">手機版隱藏「總額」欄，橫向畫面或電腦可看完整四欄。</p><div style="overflow-x:auto"><table class="bsplit"><tr><th>項目</th><th class="n">總額</th><th class="n">Will 家 5</th><th class="n">大哥大嫂 2</th></tr>
+<tr class="cat"><td>機票</td><td class="n">345,975</td><td class="n">345,975</td><td class="n">0</td></tr>
+<tr><td>華航機票（Will 家 5 人，E7JKX4）<small>已付・大哥大嫂機票另訂（EHOAFW），金額未提供，未列入</small></td><td class="n">345,975</td><td class="n">345,975</td><td class="n">0</td></tr>
+<tr><td>華航機票（大哥大嫂 2 人，EHOAFW）<small>已開票・金額待提供</small></td><td class="n">待提供</td><td class="n">0</td><td class="n">待提供</td></tr>
+<tr class="cat"><td>住宿</td><td class="n">197,201</td><td class="n">140,858</td><td class="n">56,343</td></tr>
+<tr><td>維也納 Airbnb 3 晚<small>君 已刷・12/23 前可免費取消</small></td><td class="n">66,043</td><td class="n">47,174</td><td class="n">18,869</td></tr>
+<tr><td>布達佩斯 Airbnb 5 晚<small>君 已刷・1/24 前可免費取消</small></td><td class="n">58,940</td><td class="n">42,100</td><td class="n">16,840</td></tr>
+<tr><td>薩爾斯堡 master Mirabell 2 晚<small>溫 已付・不可退款</small></td><td class="n">24,320</td><td class="n">17,371</td><td class="n">6,949</td></tr>
+<tr><td>布拉格 Airbnb 4 晚<small>溫 已付・1/27 前可部分退款</small></td><td class="n">47,898</td><td class="n">34,213</td><td class="n">13,685</td></tr>
+<tr class="cat"><td>套裝</td><td class="n">137,500</td><td class="n">98,214</td><td class="n">39,286</td></tr>
+<tr><td>典藏：哈修塔特＋CK 2 晚、3 段接送、保險<small>已付訂金 70,000・尾款 NT$67,500</small></td><td class="n">137,500</td><td class="n">98,214</td><td class="n">39,286</td></tr>
+<tr class="cat"><td>交通</td><td class="n">36,911–55,271</td><td class="n">26,365–39,479</td><td class="n">10,546–15,792</td></tr>
+<tr><td>ÖBB 1/25 維也納→布達佩斯（1 等，€265.3）<small>君 已刷</small></td><td class="n">9,551</td><td class="n">6,822</td><td class="n">2,729</td></tr>
+<tr><td>1/30 布達佩斯→薩爾斯堡火車（估）<small>未購・估 €210–420</small></td><td class="n">7,560–15,120</td><td class="n">5,400–10,800</td><td class="n">2,160–4,320</td></tr>
+<tr><td>市內交通、機場接送、雜支（估）<small>估算・估 €550–850</small></td><td class="n">19,800–30,600</td><td class="n">14,143–21,857</td><td class="n">5,657–8,743</td></tr>
+<tr class="cat"><td>門票表演</td><td class="n">39,060–58,860</td><td class="n">27,314–41,457</td><td class="n">11,746–17,403</td></tr>
+<tr><td>1/23 卡爾教堂《四季》7 張（成人 €56×4、學生 €37×3）<small>惟 已刷・Will 家 2 大 3 學生 €223；大哥大嫂 2 大 €112</small></td><td class="n">12,060</td><td class="n">8,028</td><td class="n">4,032</td></tr>
+<tr><td>景點門票（估）<small>估算・估 €750–1,300</small></td><td class="n">27,000–46,800</td><td class="n">19,286–33,429</td><td class="n">7,714–13,371</td></tr>
+<tr class="cat"><td>餐飲</td><td class="n">122,400–205,200</td><td class="n">87,429–146,571</td><td class="n">34,971–58,629</td></tr>
+<tr><td>餐飲 7 人 16 天（估）<small>估算・估 €3,400–5,700</small></td><td class="n">122,400–205,200</td><td class="n">87,429–146,571</td><td class="n">34,971–58,629</td></tr>
+<tr class="sub"><td>合計（NT$）</td><td class="n">879,047–1,000,007</td><td class="n">726,155–812,554</td><td class="n">152,892–187,453</td></tr></table></div>
+        <div class="note-box" style="margin-top:12px">⚠️ 待確認：<ul class="qlist">
+          <li>大哥大嫂機票（EHOAFW）金額</li>
+          <li>共同費用要按人數 5:2，還是依房間或其他方式分攤</li>
+          <li>付款人「君」「惟」分別是誰？典藏訂金 NT$70,000 是誰付的？（確認後可算出誰該補多少給誰）</li>
+          <li>典藏 NT$137,500 是否為 7 人總價、是否已含保險與 3 段接送</li>
+          <li>住宿金額以共用表為準：薩爾斯堡 NT$24,320（舊版寫 24,327）、布拉格 NT$47,898（舊版寫 48,068）</li>
+        </ul></div>
       </div>
     </section>
 
@@ -1180,7 +1217,7 @@
       </div>
       <div class="footer-note">
         地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
-        版本 v3.6 · 更新日期 2026/11/07（預算：典藏套裝 NT$137,500 已付訂金 NT$70,000、維也納住宿已付）
+        版本 v3.7 · 更新日期 2026/11/07（逐日行程改為地點＋日期分頁；預算拆分 Will 家與大哥大嫂）
       </div>
     </section>
 
@@ -1432,6 +1469,39 @@ document.querySelectorAll('.gofood').forEach(btn=>btn.addEventListener('click',(
     el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1600);},60);
 }));
 window.addEventListener('load', function(){ setTimeout(initOverview, 100); });
+
+// ---- v3.7: 逐日行程依地點、日期分頁 ----
+(function(){
+  const sec=document.getElementById('days'); if(!sec) return;
+  const cards=[...sec.querySelectorAll(':scope > .day-card')]; if(cards.length<18) return;
+  const G=[['vienna','維也納',[0,1,2,3]],['budapest','布達佩斯',[4,5,6,7,8]],['salzburg','薩爾斯堡',[9,10]],['hallstatt','哈修塔特',[11]],['krumlov','庫倫洛夫',[12]],['prague','布拉格',[13,14,15,16,17]]];
+  const label=c=>{const t=(c.querySelector('.day-head .d')||{}).textContent||'';const m=t.split('・')[1]||t;return m.replace(/（.）/,s=>' '+s.slice(1,2)).trim();};
+  const cityNav=document.createElement('nav');cityNav.className='subtabs';cityNav.id='dayCityTabs';
+  const dateNav=document.createElement('nav');dateNav.className='subtabs datetabs';dateNav.id='dayDateTabs';
+  const anchor=sec.querySelector(':scope > .note-box');
+  if(anchor) anchor.after(cityNav,dateNav); else sec.prepend(cityNav,dateNav);
+  const nav=document.createElement('div');nav.className='daynav';nav.innerHTML='<button type="button" id="dayPrev">‹ 前一天</button><button type="button" id="dayNext">下一天 ›</button>';
+  cards[cards.length-1].after(nav);
+  G.forEach((g,gi)=>{const b=document.createElement('button');b.type='button';b.textContent=g[1];b.dataset.g=gi;b.onclick=()=>show(g[2][0]);cityNav.appendChild(b);});
+  let cur=0;
+  function show(i){
+    cur=Math.max(0,Math.min(cards.length-1,i));
+    const gi=G.findIndex(g=>g[2].includes(cur));
+    cards.forEach((c,k)=>c.classList.toggle('dhide',k!==cur));
+    cityNav.querySelectorAll('button').forEach(b=>b.classList.toggle('active',+b.dataset.g===gi));
+    dateNav.innerHTML='';G[gi][2].forEach(k=>{const b=document.createElement('button');b.type='button';b.textContent=label(cards[k]);if(k===cur)b.classList.add('active');b.onclick=()=>show(k);dateNav.appendChild(b);});
+    dateNav.hidden=G[gi][2].length<2;
+    document.getElementById('dayPrev').disabled=cur===0;document.getElementById('dayNext').disabled=cur===cards.length-1;
+    try{localStorage.setItem('dayIdx',cur)}catch(e){}
+    if(typeof initDayMaps==='function') setTimeout(initDayMaps,30);
+  }
+  document.getElementById('dayPrev').onclick=()=>{show(cur-1);sec.scrollIntoView({block:'start'});};
+  document.getElementById('dayNext').onclick=()=>{show(cur+1);sec.scrollIntoView({block:'start'});};
+  // 預設：旅行期間顯示今天，否則上次看的那天，再否則第一天
+  const start=new Date('2027-01-21T00:00:00+08:00'),now=new Date();let def=0;
+  const d=Math.floor((now-start)/864e5); if(d>=0&&d<cards.length) def=d; else {try{const v=+localStorage.getItem('dayIdx');if(v>=0&&v<cards.length)def=v;}catch(e){}}
+  show(def);
+})();
 </script>
 
 </body>
