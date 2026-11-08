@@ -248,7 +248,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v3.13 · 2026/11/08</div>
+      <div class="ver-badge">v3.14 · 2026/11/08</div>
     </div>
   </header>
 
@@ -1287,7 +1287,7 @@
       </div>
       <div class="footer-note">
         地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
-        版本 v3.13 · 更新日期 2026/11/08（美泉宮門票改為大哥付款，更新結算）
+        版本 v3.14 · 更新日期 2026/11/08（修正 2/6 地圖：景點改用精確地址）
       </div>
     </section>
 
@@ -1339,8 +1339,8 @@ const PLACES = {
   praguecastle: {n:"布拉格城堡", l:"Pražský hrad", c:"Praha", ll:[50.0910, 14.4016]},
   stvitus: {n:"聖維特大教堂", l:"Katedrála sv. Víta", c:"Praha", ll:[50.0909, 14.4006]},
   goldenlane: {n:"黃金巷", l:"Zlatá ulička", c:"Praha", ll:[50.0918, 14.4041]},
-  vysehrad: {n:"高堡區", l:"Vyšehrad", c:"Praha", ll:[50.0641, 14.4180]},
-  dancinghouse: {n:"跳舞的房子", l:"Tančící dům", c:"Praha", ll:[50.0755, 14.4142]},
+  vysehrad: {n:"高堡區", l:"Vyšehrad", c:"Praha", q:"Bazilika sv. Petra a Pavla, K Rotundě 10, 128 00 Praha 2", ll:[50.0641, 14.4180]},
+  dancinghouse: {n:"跳舞的房子", l:"Tančící dům", c:"Praha", q:"Tančící dům, Jiráskovo náměstí 1981/6, 120 00 Praha 2", ll:[50.0755, 14.4142]},
   tyn: {n:"泰恩教堂", l:"Týnský chrám", c:"Praha", ll:[50.0877, 14.4227]},
   josefov: {n:"猶太區", l:"Pinkasova synagoga", c:"Praha", ll:[50.0889, 14.4176]},
   klementinum: {n:"克萊門特學院", l:"Klementinum", c:"Praha", ll:[50.0865, 14.4157]},
@@ -1348,10 +1348,10 @@ const PLACES = {
   strahov: {n:"斯特拉霍夫修道院", l:"Strahovský klášter", c:"Praha", ll:[50.0861, 14.3893]},
   oldpalace: {n:"舊皇宮", l:"Starý královský palác", c:"Praha", ll:[50.0905, 14.4017]},
   lennonwall: {n:"藍儂牆", l:"Lennonova zeď", c:"Praha", ll:[50.0862, 14.4067]},
-  naplavka: {n:"Náplavka 河岸市集", l:"Náplavka Rašínovo nábřeží", c:"Praha", ll:[50.0709, 14.4142]},
-  wenceslas: {n:"瓦茨拉夫廣場", l:"Václavské náměstí", c:"Praha", ll:[50.0813, 14.4280]},
-  natmuseum: {n:"國家博物館", l:"Národní muzeum", c:"Praha", ll:[50.0790, 14.4307]},
-  kafkahead: {n:"卡夫卡旋轉頭像", l:"Hlava Franze Kafky", c:"Praha", ll:[50.0822, 14.4209]}
+  naplavka: {n:"Náplavka 河岸市集", l:"Náplavka", c:"Praha", q:"Náplavka, Rašínovo nábřeží, 128 00 Praha 2", ll:[50.0709, 14.4142]},
+  wenceslas: {n:"瓦茨拉夫廣場", l:"Václavské náměstí", c:"Praha", q:"Pomník svatého Václava, Václavské náměstí, 110 00 Praha 1", ll:[50.0813, 14.4280]},
+  natmuseum: {n:"國家博物館", l:"Národní muzeum", c:"Praha", q:"Národní muzeum, Václavské náměstí 68, 110 00 Praha 1", ll:[50.0790, 14.4307]},
+  kafkahead: {n:"卡夫卡旋轉頭像", l:"Hlava Franze Kafky", c:"Praha", q:"Hlava Franze Kafky, Charvátova, 110 00 Praha 1", ll:[50.0822, 14.4209]}
 };
 
 // Route order for the overview map (numbers 1-6 = order of overnight cities)
@@ -1385,7 +1385,7 @@ function numIcon(txt, side){
 }
 
 // ---- Google 地圖嵌入（v3.9：取代 OpenStreetMap 小地圖）----
-const gq = k => PLACES[k].l + (PLACES[k].c && PLACES[k].c !== PLACES[k].l ? ", " + PLACES[k].c : "");
+const gq = k => PLACES[k].q || (PLACES[k].l + (PLACES[k].c && PLACES[k].c !== PLACES[k].l ? ", " + PLACES[k].c : ""));
 function gEmbedQ(q, z){
   return "https://maps.google.com/maps?q=" + encodeURIComponent(q) + "&hl=zh-TW" + (z ? "&z=" + z : "") + "&output=embed";
 }
