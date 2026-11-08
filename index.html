@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>奧捷匈 16 晚家族旅行</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <style>
   :root {
     --navy: #1c2b3a;
@@ -189,6 +188,19 @@
   .tl .t { font-variant-numeric:tabular-nums; font-weight:700; color:var(--gold, #b08a4a); }
   .tl small { display:block; color:var(--muted); font-size:11.5px; line-height:1.45; }
   .tl .tix { display:inline-block; font-size:10.5px; border:1px solid currentColor; border-radius:999px; padding:0 6px; margin-left:4px; color:#b5563c; font-weight:600; }
+  .daymap.gm { height:auto; padding:8px 10px 6px; background:#faf7f2; }
+  .gframe { width:100%; border:0; border-radius:10px; display:block; background:#e8e4dc; }
+  .map-overview .gframe { border-radius:12px; }
+  .gm-chips, .gm-food { display:flex; gap:6px; overflow-x:auto; padding:2px 0 8px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+  .gm-chips::-webkit-scrollbar, .gm-food::-webkit-scrollbar { display:none; }
+  .gm-food { padding:8px 0 2px; align-items:center; }
+  .gm-h { font-size:12px; color:var(--muted); white-space:nowrap; }
+  .gm-chip { flex:none; font:inherit; font-size:12.5px; padding:5px 11px; border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--navy); white-space:nowrap; cursor:pointer; }
+  .gm-chip.on { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .gm-chip.food { border-color:#c9622f; color:#c9622f; }
+  .gm-chip.food.on { background:#c9622f; color:#fff; }
+  .gm-chip.meal { font-size:12px; }
+  .gm-tip { font-size:11px; color:var(--muted); padding:4px 2px 2px; }
   .bsplit { width:100%; border-collapse:collapse; font-size:12.5px; }
   .bsplit th, .bsplit td { padding:7px 5px; border-bottom:1px solid var(--line); vertical-align:top; }
   .bsplit th { color:var(--muted); font-size:11px; font-weight:600; text-align:left; }
@@ -236,7 +248,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v3.8 · 2026/11/08</div>
+      <div class="ver-badge">v3.9 · 2026/11/08</div>
     </div>
   </header>
 
@@ -551,7 +563,7 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 15・2/4（四）</span><span class="city">布拉格・老城區</span></div>
-        <div class="daymap" data-stops="oldtown,charlesbridge,powdertower" data-mode="local"></div>
+        <div class="daymap" data-stops="oldtown,tyn,josefov,klementinum,charlesbridge,kampa" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>老城廣場天文鐘 → 泰恩教堂 → 猶太區 → 克萊門特學院 → 查理大橋 → 康帕島日落</div>
           <div class="seg"><span class="seg-label">交通</span>步行／地鐵</div>
@@ -563,7 +575,7 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 16・2/5（五）除夕</span><span class="city">布拉格・城堡區</span></div>
-        <div class="daymap" data-stops="praguecastle,stvitus,goldenlane" data-mode="local"></div>
+        <div class="daymap" data-stops="strahov,stvitus,oldpalace,goldenlane,lennonwall,charlesbridge" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>電車 22 上山 → 斯特拉霍夫修道院 → 布拉格城堡（聖維特大教堂、舊皇宮、聖喬治教堂、黃金巷）→ 小城區 → 查理大橋</div>
           <div class="seg"><span class="seg-label">交通</span>電車／步行</div>
@@ -575,7 +587,7 @@
 
       <div class="day-card">
         <div class="day-head"><span class="d">Day 17・2/6（六）初一</span><span class="city">布拉格深度體驗</span></div>
-        <div class="daymap" data-stops="vysehrad,dancinghouse" data-mode="local"></div>
+        <div class="daymap" data-stops="vysehrad,naplavka,dancinghouse,wenceslas,natmuseum,kafkahead" data-mode="local"></div>
         <div class="day-body">
           <div class="seg"><span class="seg-label">全天</span>高堡 Vyšehrad → 河岸散步 → Náplavka 市集 → 跳舞的房子 → 瓦茨拉夫廣場 → 國家博物館 → 卡夫卡旋轉頭像</div>
           <div class="seg"><span class="seg-label">交通</span>地鐵／電車</div>
@@ -1226,14 +1238,13 @@
       </div>
       <div class="footer-note">
         地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
-        版本 v3.8 · 更新日期 2026/11/08（布拉格 2/4–2/6 加入每日時刻表、建議活動與購票提醒）
+        版本 v3.9 · 更新日期 2026/11/08（地圖改用 Google 地圖嵌入：每日路線、景點照片、附近美食與推薦餐廳位置）
       </div>
     </section>
 
   </main>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 // ---- Real coordinates ----
 const PLACES = {
@@ -1280,7 +1291,18 @@ const PLACES = {
   stvitus: {n:"聖維特大教堂", l:"Katedrála sv. Víta", c:"Praha", ll:[50.0909, 14.4006]},
   goldenlane: {n:"黃金巷", l:"Zlatá ulička", c:"Praha", ll:[50.0918, 14.4041]},
   vysehrad: {n:"高堡區", l:"Vyšehrad", c:"Praha", ll:[50.0641, 14.4180]},
-  dancinghouse: {n:"跳舞的房子", l:"Tančící dům", c:"Praha", ll:[50.0755, 14.4142]}
+  dancinghouse: {n:"跳舞的房子", l:"Tančící dům", c:"Praha", ll:[50.0755, 14.4142]},
+  tyn: {n:"泰恩教堂", l:"Týnský chrám", c:"Praha", ll:[50.0877, 14.4227]},
+  josefov: {n:"猶太區", l:"Pinkasova synagoga", c:"Praha", ll:[50.0889, 14.4176]},
+  klementinum: {n:"克萊門特學院", l:"Klementinum", c:"Praha", ll:[50.0865, 14.4157]},
+  kampa: {n:"康帕島", l:"Kampa Island", c:"Praha", ll:[50.0847, 14.4078]},
+  strahov: {n:"斯特拉霍夫修道院", l:"Strahovský klášter", c:"Praha", ll:[50.0861, 14.3893]},
+  oldpalace: {n:"舊皇宮", l:"Starý královský palác", c:"Praha", ll:[50.0905, 14.4017]},
+  lennonwall: {n:"藍儂牆", l:"Lennonova zeď", c:"Praha", ll:[50.0862, 14.4067]},
+  naplavka: {n:"Náplavka 河岸市集", l:"Náplavka Rašínovo nábřeží", c:"Praha", ll:[50.0709, 14.4142]},
+  wenceslas: {n:"瓦茨拉夫廣場", l:"Václavské náměstí", c:"Praha", ll:[50.0813, 14.4280]},
+  natmuseum: {n:"國家博物館", l:"Národní muzeum", c:"Praha", ll:[50.0790, 14.4307]},
+  kafkahead: {n:"卡夫卡旋轉頭像", l:"Hlava Franze Kafky", c:"Praha", ll:[50.0822, 14.4209]}
 };
 
 // Route order for the overview map (numbers 1-6 = order of overnight cities)
@@ -1313,39 +1335,33 @@ function numIcon(txt, side){
   });
 }
 
+// ---- Google 地圖嵌入（v3.9：取代 OpenStreetMap 小地圖）----
+const gq = k => PLACES[k].l + (PLACES[k].c && PLACES[k].c !== PLACES[k].l ? ", " + PLACES[k].c : "");
+function gEmbedQ(q, z){
+  return "https://maps.google.com/maps?q=" + encodeURIComponent(q) + "&hl=zh-TW" + (z ? "&z=" + z : "") + "&output=embed";
+}
+function gEmbedRoute(keys, mode){
+  const f = mode === "local" ? "w" : (mode === "rail" ? "r" : "d");
+  return "https://maps.google.com/maps?saddr=" + encodeURIComponent(gq(keys[0]))
+    + "&daddr=" + keys.slice(1).map(k => encodeURIComponent(gq(k))).join("+to:")
+    + "&dirflg=" + f + "&hl=zh-TW&output=embed";
+}
+function gFrame(src, h){
+  const f = document.createElement("iframe");
+  f.className = "gframe"; f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
+  f.setAttribute("allowfullscreen", ""); f.style.height = (h || 300) + "px"; f.src = src;
+  return f;
+}
+
 let overviewDone = false;
 function initOverview(){
   if(overviewDone) return;
   const el = document.getElementById("mapOverview");
   if(!el || !el.offsetParent) return;
   overviewDone = true;
-  const map = L.map(el, {scrollWheelZoom:false});
-  L.tileLayer(TILE,{attribution:ATTR, maxZoom:18}).addTo(map);
-
-  // ground legs
-  ROUTE_LEGS.forEach(function(leg){
-    L.polyline([PLACES[leg[0]].ll, PLACES[leg[1]].ll],
-      {color:"#c9622f", weight:4, opacity:.85, dashArray:"8,7"}).addTo(map);
-  });
-  // day trip
-  L.polyline([PLACES.budapest.ll, PLACES.szentendre.ll],
-    {color:"#b8935a", weight:3, opacity:.8, dashArray:"4,6"}).addTo(map);
-  L.marker(PLACES.szentendre.ll,{icon:numIcon("★",true)})
-    .addTo(map)
-    .bindTooltip('<b>聖安德烈小鎮</b><i>'+PLACES.szentendre.l+'</i>', {permanent:true, direction:"right", className:"lbl lbl-side", offset:[10,0]})
-    .bindPopup("聖安德烈小鎮 "+PLACES.szentendre.l+"<br>1/28 一日遊（不過夜）");
-
-  // numbered stops — the number is the order you sleep there
-  ROUTE.forEach(function(k,i){
-    L.marker(PLACES[k].ll,{icon:numIcon(i+1)})
-      .addTo(map)
-      .bindTooltip('<b>'+(i+1)+'. '+PLACES[k].n+'</b><i>'+PLACES[k].l+'</i>',
-        {permanent:true, direction:"right", className:"lbl", offset:[12,0]})
-      .bindPopup("<b>第"+(i+1)+"站　"+PLACES[k].n+"</b><br>"+PLACES[k].l+"<br>"+STAY[k]);
-  });
-
-  const bounds = L.latLngBounds(ROUTE.map(k=>PLACES[k].ll).concat([PLACES.szentendre.ll]));
-  map.fitBounds(bounds,{padding:[30,30]});
+  el.innerHTML = "";
+  el.style.height = "auto";
+  el.appendChild(gFrame(gEmbedRoute(ROUTE, "bus"), 340));
 }
 
 const dayMapsDone = new WeakSet();
@@ -1358,35 +1374,67 @@ function initDayMaps(){
     const keys = el.dataset.stops.split(",").map(s=>s.trim()).filter(k=>PLACES[k]);
     if(!keys.length) return;
     const mode = el.dataset.mode || "local";
+    el.innerHTML = ""; el.classList.add("gm");
 
-    const map = L.map(el, {
-      scrollWheelZoom:false, zoomControl:false,
-      dragging:true, attributionControl:false
-    });
-    L.tileLayer(TILE,{maxZoom:18}).addTo(map);
+    const routeSrc = (keys.length > 1 && mode !== "air") ? gEmbedRoute(keys, mode) : gEmbedQ(gq(keys[keys.length-1]), mode === "air" ? 5 : 14);
+    const frame = gFrame(routeSrc);
+    let current = keys[keys.length-1];
 
+    const chips = document.createElement("div");
+    chips.className = "gm-chips";
+    function chip(label, cls, fn){
+      const b = document.createElement("button"); b.type = "button";
+      b.className = "gm-chip" + (cls ? " " + cls : ""); b.textContent = label;
+      b.addEventListener("click", function(){
+        chips.querySelectorAll(".gm-chip").forEach(x => x.classList.remove("on"));
+        el.querySelectorAll(".gm-food .gm-chip").forEach(x => x.classList.remove("on"));
+        b.classList.add("on"); fn();
+      });
+      return b;
+    }
     if(keys.length > 1 && mode !== "air"){
-      const color = mode==="rail" ? "#c9622f" : (mode==="bus" ? "#7a3b5e" : "#3d6b7d");
-      L.polyline(keys.map(k=>PLACES[k].ll),
-        {color:color, weight:3.5, opacity:.85, dashArray:"7,6"}).addTo(map);
+      const r = chip(mode === "local" ? "🚶 今日路線" : "🧭 移動路線", "route on", () => frame.src = routeSrc);
+      chips.appendChild(r);
     }
-
-    keys.forEach(function(k,i){
-      L.marker(PLACES[k].ll,{icon:numIcon(i+1, keys.length>2)})
-        .addTo(map)
-        .bindTooltip('<b>'+PLACES[k].n+'</b><i>'+PLACES[k].l+'</i>',
-          {permanent:true, direction:"right", className:"lbl lbl-day", offset:[10,0]})
-        .bindPopup(PLACES[k].n+"<br>"+PLACES[k].l);
+    keys.forEach(function(k, i){
+      chips.appendChild(chip((keys.length > 1 ? (i+1) + " " : "") + PLACES[k].n, "", function(){ current = k; frame.src = gEmbedQ(gq(k), 16); }));
     });
-
-    if(mode === "air"){
-      // long-haul: just centre on the European end
-      map.setView(PLACES[keys[keys.length-1]].ll, 4);
-    } else if(keys.length === 1){
-      map.setView(PLACES[keys[0]].ll, 13);
-    } else {
-      map.fitBounds(L.latLngBounds(keys.map(k=>PLACES[k].ll)),{padding:[28,28]});
+    if(mode !== "air"){
+      chips.appendChild(chip("🍴 附近美食", "food", () => frame.src = gEmbedQ("restaurants near " + gq(current), 16)));
     }
+    el.appendChild(chips);
+    el.appendChild(frame);
+
+    // 當天推薦餐廳（取自「餐廳」分頁對應的日程卡）
+    const body = el.parentNode.querySelector(".gofood");
+    const card = body && document.getElementById(body.dataset.day);
+    if(card){
+      const meals = [...card.querySelectorAll(".meal")].map(m => {
+        const a = m.querySelector("a.mlink"); const n = m.querySelector("b");
+        const slot = m.querySelector(".mslot");
+        if(!a || !n) return null;
+        const q = new URL(a.href).searchParams.get("query") || n.textContent;
+        return {n: n.textContent, slot: slot ? slot.textContent : "", q: q};
+      }).filter(Boolean);
+      if(meals.length){
+        const fr = document.createElement("div"); fr.className = "gm-food";
+        const h = document.createElement("span"); h.className = "gm-h"; h.textContent = "🍽️ 推薦餐廳：";
+        fr.appendChild(h);
+        meals.forEach(function(m){
+          const b = document.createElement("button"); b.type = "button"; b.className = "gm-chip meal";
+          b.textContent = m.slot + "・" + m.n;
+          b.addEventListener("click", function(){
+            el.querySelectorAll(".gm-chip").forEach(x => x.classList.remove("on"));
+            b.classList.add("on"); frame.src = gEmbedQ(m.q, 16);
+          });
+          fr.appendChild(b);
+        });
+        el.appendChild(fr);
+      }
+    }
+    const tip = document.createElement("div"); tip.className = "gm-tip";
+    tip.textContent = "點景點看照片與評價；兩指縮放、拖曳移動。";
+    el.appendChild(tip);
 
     buildMapLinks(el, keys, mode);
   });
@@ -1417,7 +1465,7 @@ function buildMapLinks(mapEl, keys, mode){
 
   const head = document.createElement("div");
   head.className = "gmaps-head";
-  head.textContent = "📍 在 Google 地圖開啟";
+  head.textContent = "📱 用 Google 地圖 App 開啟／導航";
   wrap.appendChild(head);
 
   const row = document.createElement("div");
