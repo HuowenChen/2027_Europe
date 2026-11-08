@@ -183,6 +183,12 @@
   .daynav { display:flex; justify-content:space-between; gap:8px; margin:4px 0 14px; }
   .daynav button { flex:1; font:inherit; font-size:13px; border:1px solid var(--line); background:#fff; color:var(--navy); border-radius:10px; padding:9px 10px; }
   .daynav button:disabled { opacity:.35; }
+  .tl { margin:10px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .tl-h { font-size:12.5px; font-weight:700; color:var(--navy); background:#faf7f2; padding:7px 10px; }
+  .tl .tr { display:grid; grid-template-columns:52px minmax(0,1fr); gap:8px; padding:7px 10px; border-top:1px solid var(--line); font-size:13px; }
+  .tl .t { font-variant-numeric:tabular-nums; font-weight:700; color:var(--gold, #b08a4a); }
+  .tl small { display:block; color:var(--muted); font-size:11.5px; line-height:1.45; }
+  .tl .tix { display:inline-block; font-size:10.5px; border:1px solid currentColor; border-radius:999px; padding:0 6px; margin-left:4px; color:#b5563c; font-weight:600; }
   .bsplit { width:100%; border-collapse:collapse; font-size:12.5px; }
   .bsplit th, .bsplit td { padding:7px 5px; border-bottom:1px solid var(--line); vertical-align:top; }
   .bsplit th { color:var(--muted); font-size:11px; font-weight:600; text-align:left; }
@@ -230,7 +236,7 @@
         <h1>奧捷匈家族旅行</h1>
         <div class="sub">2027 農曆春節 · 16 晚自助行程 · 7 人團</div>
       </div>
-      <div class="ver-badge">v3.7 · 2026/11/07</div>
+      <div class="ver-badge">v3.8 · 2026/11/08</div>
     </div>
   </header>
 
@@ -537,6 +543,7 @@
           <div class="seg"><span class="seg-label">上午</span>參觀庫倫洛夫城堡區</div>
           <div class="seg"><span class="seg-label">交通</span>✅ 旅行社專車接送（庫倫洛夫→布拉格），約2.5–3小時</div>
           <div class="seg"><span class="seg-label">住宿</span>✅ Airbnb「Velký 5kk byt」Lucemburská 1496/8, Praha 3 · 入住15:00 · 訂位代號 HMCYFQX4B8</div>
+          <div class="seg"><span class="seg-label">晚上</span>附近晚餐、超市補給；建議夜遊查理大橋（白天、夜晚各走一次）</div>
           <button type="button" class="gofood" data-city="prague" data-day="pd14">🍽️ 看今天順路的餐廳</button>
           <div class="wc-box"><div class="wc-h">🚻 沿途廁所</div><ul><li><span class="wk wk-paid">付費</span><span><b>CK 城堡區</b>・依城堡區 WC 指標</span></li><li><span class="wk wk-paid">付費</span><span><b>包車途中休息站</b>・約 2.5–3 小時車程</span></li><li><span class="wk wk-free">免費</span><span><b>布拉格住處</b>・16:00 入住</span></li></ul></div>
         </div>
@@ -546,8 +553,9 @@
         <div class="day-head"><span class="d">Day 15・2/4（四）</span><span class="city">布拉格・老城區</span></div>
         <div class="daymap" data-stops="oldtown,charlesbridge,powdertower" data-mode="local"></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">全天</span>老城廣場天文鐘、泰恩教堂、聖尼古拉教堂、查理大橋、火藥塔</div>
+          <div class="seg"><span class="seg-label">全天</span>老城廣場天文鐘 → 泰恩教堂 → 猶太區 → 克萊門特學院 → 查理大橋 → 康帕島日落</div>
           <div class="seg"><span class="seg-label">交通</span>步行／地鐵</div>
+          <div class="tl"><div class="tl-h">⏰ 建議時刻表</div><div class="tr"><span class="t">09:00</span><span><b>老城廣場、天文鐘</b><small>看整點報時表演</small></span></div><div class="tr"><span class="t">09:30</span><span><b>泰恩教堂、聖尼古拉教堂</b><small>外觀及內部</small></span></div><div class="tr"><span class="t">10:00</span><span><b>猶太區 Josefov</b><span class="tix">當天購票</span><small>猶太博物館綜合票，完整參觀 2–3 小時（平卡斯、西班牙猶太會堂、舊猶太墓園等）</small></span></div><div class="tr"><span class="t">12:30</span><span><b>午餐</b><small>捷克傳統料理</small></span></div><div class="tr"><span class="t">14:00</span><span><b>克萊門特學院</b><span class="tix">1/18 起預購</span><small>巴洛克圖書館＋天文塔，導覽 45 分鐘、每場 25 人，選英文場</small></span></div><div class="tr"><span class="t">15:00</span><span><b>查理大橋</b><small>欣賞伏爾塔瓦河</small></span></div><div class="tr"><span class="t">16:30</span><span><b>康帕島看日落</b><small>冬季日落約 16:45</small></span></div><div class="tr"><span class="t">選配</span><span><b>老城市政廳塔</b><span class="tix">現場買</span><small>開放後第一小時半價；電梯另 100 CZK</small></span></div></div><div class="note-box">🎟️ 猶太博物館：7 人算團體票，只限購票當天有效，請在 2/4 當天線上買（4 成人 600、16 歲學生 400、14 歲兒童 200，合計約 3,400 CZK）；學生票要帶學生證。</div>
           <button type="button" class="gofood" data-city="prague" data-day="pd15">🍽️ 看今天順路的餐廳</button>
           <div class="wc-box"><div class="wc-h">🚻 沿途廁所</div><ul><li><span class="wk wk-paid">付費</span><span><b>泰恩教堂旁公廁</b>・老城廣場，義大利餐廳旁</span></li><li><span class="wk wk-paid">付費</span><span><b>老城市政廳後方小公園</b></span></li><li><span class="wk wk-paid">付費</span><span><b>市立圖書館地下樓</b>・20 CZK</span></li><li><span class="wk wk-free">免費</span><span><b>Palladium 購物中心</b>・火藥塔旁</span></li></ul></div>
         </div>
@@ -557,9 +565,9 @@
         <div class="day-head"><span class="d">Day 16・2/5（五）除夕</span><span class="city">布拉格・城堡區</span></div>
         <div class="daymap" data-stops="praguecastle,stvitus,goldenlane" data-mode="local"></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">全天</span>布拉格城堡 → 聖維特大教堂 → 舊皇宮 → 聖喬治修道院 → 黃金巷（22號卡夫卡故居）→ 斯特拉霍夫修道院圖書館（世界最美圖書館）</div>
+          <div class="seg"><span class="seg-label">全天</span>電車 22 上山 → 斯特拉霍夫修道院 → 布拉格城堡（聖維特大教堂、舊皇宮、聖喬治教堂、黃金巷）→ 小城區 → 查理大橋</div>
           <div class="seg"><span class="seg-label">交通</span>電車／步行</div>
-          <div class="seg"><span class="seg-label">晚上</span>圍爐年夜飯（可留意當地中式/亞洲餐廳，或自己備年菜）</div>
+          <div class="tl"><div class="tl-h">⏰ 建議時刻表</div><div class="tr"><span class="t">08:30</span><span><b>搭電車 22 號上山</b><small>從高處往下走，省體力</small></span></div><div class="tr"><span class="t">09:00</span><span><b>斯特拉霍夫修道院圖書館</b><span class="tix">現場買</span><small>一般票只能在大廳入口觀看，不能走進大廳；約 40 分鐘</small></span></div><div class="tr"><span class="t">10:15</span><span><b>布拉格城堡 Basic Tour</b><span class="tix">出發前預購</span><small>冬季室內 09:00–16:00，重要景點排上午</small></span></div><div class="tr"><span class="t">10:30</span><span><b>聖維特大教堂</b><small>先看大教堂再看其他建築</small></span></div><div class="tr"><span class="t">11:30</span><span><b>舊皇宮、聖喬治教堂</b><small>室內參觀</small></span></div><div class="tr"><span class="t">12:30</span><span><b>黃金巷</b><small>22 號卡夫卡故居</small></span></div><div class="tr"><span class="t">13:30</span><span><b>午餐</b><small>城堡區或小城區</small></span></div><div class="tr"><span class="t">14:30</span><span><b>藍儂牆、康帕島</b><small>輕鬆散步</small></span></div><div class="tr"><span class="t">16:00</span><span><b>查理大橋</b><small>傍晚拍照</small></span></div><div class="tr"><span class="t">晚上</span><span><b>除夕年夜飯</b><small>待確認：Kampa Park（7 人同桌、河景座需先訂位）或中式／自備年菜</small></span></div></div><div class="note-box">🎟️ 城堡 Basic Tour：成人 450、優惠 300、家庭票 950 CZK，兩天有效，每棟只能進一次。</div>
           <button type="button" class="gofood" data-city="prague" data-day="pd16">🍽️ 看今天順路的餐廳</button>
           <div class="wc-box"><div class="wc-h">🚻 沿途廁所</div><ul><li><span class="wk wk-buy">消費</span><span><b>Café Savoy</b>・早餐時</span></li><li><span class="wk wk-tix">門票</span><span><b>斯特拉霍夫修道院</b></span></li><li><span class="wk wk-paid">付費</span><span><b>聖維特大教堂附近</b>・城堡區內</span></li><li><span class="wk wk-paid">付費</span><span><b>玩具博物館旁（咖啡館）</b>・黃金巷附近</span></li><li><span class="wk wk-paid">付費</span><span><b>新城堡階梯下</b>・右手邊，收歐元但較貴</span></li></ul></div>
         </div>
@@ -569,8 +577,9 @@
         <div class="day-head"><span class="d">Day 17・2/6（六）初一</span><span class="city">布拉格深度體驗</span></div>
         <div class="daymap" data-stops="vysehrad,dancinghouse" data-mode="local"></div>
         <div class="day-body">
-          <div class="seg"><span class="seg-label">全天</span>高堡區 Vyšehrad 俯瞰市景、跳舞的房子、卡夫卡雕塑、瓦茨拉夫廣場</div>
+          <div class="seg"><span class="seg-label">全天</span>高堡 Vyšehrad → 河岸散步 → Náplavka 市集 → 跳舞的房子 → 瓦茨拉夫廣場 → 國家博物館 → 卡夫卡旋轉頭像</div>
           <div class="seg"><span class="seg-label">交通</span>地鐵／電車</div>
+          <div class="tl"><div class="tl-h">⏰ 建議時刻表</div><div class="tr"><span class="t">09:30</span><span><b>高堡 Vyšehrad</b><small>城牆、墓園、教堂，俯瞰市景（地鐵 C 線 Vyšehrad 站）</small></span></div><div class="tr"><span class="t">11:30</span><span><b>伏爾塔瓦河岸散步</b><small>沿河往北走</small></span></div><div class="tr"><span class="t">12:15</span><span><b>Náplavka 河岸市集</b><small>週六限定，可順便吃午餐</small></span></div><div class="tr"><span class="t">13:30</span><span><b>跳舞的房子</b><small>拍照</small></span></div><div class="tr"><span class="t">14:30</span><span><b>瓦茨拉夫廣場</b><small>新城區散步、購物、伴手禮</small></span></div><div class="tr"><span class="t">15:00</span><span><b>國家博物館</b><span class="tix">現場買</span><small>建議入內，票價依展覽</small></span></div><div class="tr"><span class="t">16:30</span><span><b>卡夫卡旋轉頭像</b><small>Quadrio 購物中心旁，拍照</small></span></div></div>
           <div class="note-box">兩點都在伏爾塔瓦河東岸南段，可沿河濱步行串連</div>
           <button type="button" class="gofood" data-city="prague" data-day="pd17">🍽️ 看今天順路的餐廳</button>
           <div class="wc-box"><div class="wc-h">🚻 沿途廁所</div><ul><li><span class="wk wk-paid">付費</span><span><b>高堡園區</b>・依現場指標</span></li><li><span class="wk wk-paid">付費</span><span><b>Quadrio 購物中心</b>・國民大道站上方，可刷卡</span></li><li><span class="wk wk-paid">付費</span><span><b>地鐵站（Můstek 等）</b>・約 20 CZK</span></li><li><span class="wk wk-buy">消費</span><span><b>Lucerna 拱廊／Café Louvre</b></span></li></ul></div>
@@ -1217,7 +1226,7 @@
       </div>
       <div class="footer-note">
         地圖使用真實經緯度，同時標示繁體中文與當地拼寫，需連網才能顯示。<br>
-        版本 v3.7 · 更新日期 2026/11/07（逐日行程改為地點＋日期分頁；預算拆分 Will 家與大哥大嫂）
+        版本 v3.8 · 更新日期 2026/11/08（布拉格 2/4–2/6 加入每日時刻表、建議活動與購票提醒）
       </div>
     </section>
 
